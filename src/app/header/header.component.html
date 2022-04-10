@@ -2,7 +2,7 @@
     <li class="nav-item brand">
         <a class="nav-link" [routerLink]="['/home']">Início</a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="checkLoggedIn()" class="nav-item">
         <a class="nav-link" [routerLink]="['/register']">Registrar Funcionário</a>
     </li>
     <li class="nav-item">

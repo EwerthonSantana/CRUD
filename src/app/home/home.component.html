@@ -6,7 +6,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Endereço</th>
                 <th scope="col">telefone</th>
-                <th scope="col">Ações</th>
+                <th *ngIf="checkLoggedIn()" scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -15,11 +15,11 @@
                 <td>{{row.email}}</td>
                 <td> {{row.adress.district + ", "+row.adress.street + ", " + row.adress.houseNumber}} {{row.adress.complement}}</td>
                 <td>{{row.fone}}</td>
-                <td>
-                    <a routerLink="['']" role="button" (click)="updateEmploye(row.id)"> <i class="fa fa-pencil mx-2"></i> </a>
+                <td *ngIf="checkLoggedIn()">
+                    <a *ngIf="checkLoggedIn()" routerLink="['']" role="button" (click)="updateEmploye(row.id)"> <i class="fa fa-pencil mx-2"></i> </a>
 
 
-                    <a [routerLink]="['']" role="button" (click)="deleteEmploye(row.id)"> <i class="fa fa-trash"></i> </a>
+                    <a *ngIf="checkLoggedIn()" [routerLink]="['']" role="button" (click)="deleteEmploye(row.id)"> <i class="fa fa-trash"></i> </a>
                 </td>
             </tr>
 
