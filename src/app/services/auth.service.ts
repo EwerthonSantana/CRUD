@@ -8,7 +8,6 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   public loggedIn: boolean = false
-  // showDisplay = new EventEmitter<boolean>()
 
   constructor(private router: Router) { }
 
@@ -16,14 +15,16 @@ export class AuthService {
     if (user.email === 'ewerthon@gmail.com' &&
       user.password === '123') {
       this.loggedIn = true;
-      // this.showDisplay.emit(true)
       this.router.navigate(['/home'])
     } else {
       this.loggedIn = false
-      // this.showDisplay.emit(false)
 
     }
   }
 
+
+  userAuth(){
+    return this.loggedIn
+  }
 
 }

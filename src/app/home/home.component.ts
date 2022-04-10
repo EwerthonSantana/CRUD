@@ -16,9 +16,17 @@ export class HomeComponent implements OnInit {
   constructor(private service: EmployeesService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+    if(this.employees === null){
+      alert('Não há usuários cadastrados, cadastre alguns!')
+    } else {
+      this.readEmployees()
+
+    }
+  }
+
+  readEmployees(){
     this.service.getEmployees().subscribe(response => {
-      this.employees = response
-    })
+      this.employees = response})
   }
 
   updateEmploye(id: any) {
@@ -28,11 +36,14 @@ export class HomeComponent implements OnInit {
   deleteEmploye(id: any) {
     this.service.deleteEmployees(id).subscribe(response => {
       alert('Empregado deletado com Sucesso!')
+      this.router.navigate(['/home'])
+      this.readEmployees()
     })
   }
 
   checkLoggedIn(){
     return this.authService.loggedIn
   }
+
 
 }

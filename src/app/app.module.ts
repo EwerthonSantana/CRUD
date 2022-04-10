@@ -1,3 +1,4 @@
+import { AuthGuard } from './guard/auth.guard';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http'
@@ -28,10 +29,10 @@ import { NgxMaskModule } from 'ngx-mask';
     FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot({
-      dropSpecialCharacters: false // ao salvar vai manter a máscara
+      dropSpecialCharacters: false // ao salvar vai manter a máscara no db.json
     })
   ],
-  providers: [EmployeesService],
+  providers: [EmployeesService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

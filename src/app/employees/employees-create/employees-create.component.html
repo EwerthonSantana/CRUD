@@ -2,12 +2,16 @@
 
 
 <form [formGroup]="registerForm" novalidate>
-
     <div class="container my-3">
         <div class="row">
             <div class="col-4 form-group">
                 <label for="">Nome</label>
                 <input type="text" formControlName="name" class="form-control">
+                <div *ngIf="registerForm.controls.name.touched &&
+                 registerForm.controls.name.invalid">
+                    <p class="text-danger my-1 py-1">Nome é Obrigatório.</p>
+                </div>
+
             </div>
 
             <div class="col-4 form-group">
@@ -82,7 +86,7 @@
                 <select class="form-select control-form" formControlName="office">
                     <option selected hidden></option>
                     <option value="Gerente de Projetos">Gerente de Projetos</option>
-                    <option value="Gerente de Projetos">Gerente de Projetos</option>
+                    <option value="HelpDesk">HelpDesk</option>
                     <option value="Engenheiro de Software">Engenheiro de Software</option>
                     <option value="Analista de Sistemas">Analista de Sistemas</option>
                     <option value="Scrum Master">Scrum Master</option>
@@ -140,8 +144,8 @@
 
         <div class="row my-2">
             <div class="col-12">
-                <button (click)="sendEmployees(registerForm.value)" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary mx-2">Cadastrar</button>
-                <button type="reset" (click)="cancelRegister()" class="btn btn-light"> Cancelar</button>
+                <button (click)="sendEmployees(registerForm.value)" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary mx-2">Salvar</button>
+                <button type="reset" (click)="cancelRegister()" class="btn btn-light">Cancelar</button>
 
             </div>
         </div>

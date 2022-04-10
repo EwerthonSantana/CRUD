@@ -19,6 +19,7 @@ export class EmployeesCreateComponent implements OnInit {
   employees!: EmployeesModel
   registerForm!: any
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+  showTittle: boolean = true
 
   constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
@@ -55,10 +56,10 @@ export class EmployeesCreateComponent implements OnInit {
       office: new FormControl(null, [Validators.required]),
       technology: new FormControl(null, [Validators.required]),
       frameworks: new FormGroup({
-        angular: new FormControl(null),
-        react: new FormControl(null),
-        vue: new FormControl(null),
-        laravel: new FormControl(null)
+        angular: new FormControl(),
+        react: new FormControl(),
+        vue: new FormControl(),
+        laravel: new FormControl()
       }),
       newsletter: new FormControl(null, [Validators.required]),
 
@@ -84,12 +85,12 @@ export class EmployeesCreateComponent implements OnInit {
       },
       office: datas.office,
       technology: datas.technology,
-      // frameworks: {
-      //   angular: datas.frameworks.angular,
-      //   react: datas.frameworks.react,
-      //   vue: datas.frameworks.vue,
-      //   laravel: datas.frameworks.laravel
-      // },
+      frameworks: {
+        angular: datas.frameworks.angular,
+        react: datas.frameworks.react,
+        vue: datas.frameworks.vue,
+        laravel: datas.frameworks.laravel
+      },
       newsletter: datas.newsletter
 
     })
