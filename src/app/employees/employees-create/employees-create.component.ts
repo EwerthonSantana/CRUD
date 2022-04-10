@@ -99,6 +99,7 @@ export class EmployeesCreateComponent implements OnInit {
 
     if (this.registerForm.value.id) {
       this.service.putEmployees(this.registerForm.value).subscribe(response => {
+        alert('Empregado atualizado com sucesso!')
         this.navigate()
       })
     }
