@@ -1,0 +1,151 @@
+ {{registerForm.valid}} <br> {{registerForm.value | json}}
+
+
+<form [formGroup]="registerForm" novalidate>
+
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-4 form-group">
+                <label for="">Nome</label>
+                <input type="text" formControlName="name" class="form-control">
+            </div>
+
+            <div class="col-4 form-group">
+                <label for="">CPF</label>
+                <input type="text" formControlName="cpf" class="form-control" mask="000.000.000-00">
+            </div>
+
+            <div class="col-4 form-group">
+                <label for="">Telefone</label>
+                <input type="text" formControlName="fone" prefix="+55 " mask="(00) 00000-0000" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="">Email</label>
+                <input type="text" formControlName="email" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="">Email Confirmação </label>
+                <input type="text" formControlName="emailConfirmation" class="form-control">
+                <p *ngIf="registerForm.controls.emailConfirmation.errors?.equalTo">equalTo error</p>
+            </div>
+        </div>
+
+        <div formGroupName="adress">
+
+            <div class="row">
+                <div class="col-3 form-group">
+                    <label for="">CEP</label>
+                    <input (blur)="consultCEP()" type="text" formControlName="cep" class="form-control" mask="00000-000">
+                </div>
+
+                <div class="col-3 form-group">
+                    <label for="">Número</label>
+                    <input type="text" formControlName="houseNumber" class="form-control">
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="">Complemento</label>
+                    <input type="text" formControlName="complement" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label for="">Rua</label>
+                    <input type="text" formControlName="street" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 form-group">
+                    <label for="">Bairro</label>
+                    <input type="text" formControlName="district" class="form-control">
+                </div>
+                <div class="col-4 form-group">
+                    <label for="">Cidade</label>
+                    <input type="text" formControlName="city" class="form-control">
+                </div>
+                <div class="col-3 form-group">
+                    <label for="">Estado</label>
+                    <input type="text" formControlName="state" class="form-control">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3 form-group">
+                <label>Cargo</label>
+                <select class="form-select control-form" formControlName="office">
+                    <option selected hidden></option>
+                    <option value="Gerente de Projetos">Gerente de Projetos</option>
+                    <option value="Gerente de Projetos">Gerente de Projetos</option>
+                    <option value="Engenheiro de Software">Engenheiro de Software</option>
+                    <option value="Analista de Sistemas">Analista de Sistemas</option>
+                    <option value="Scrum Master">Scrum Master</option>
+                  </select>
+            </div>
+            <div class="col-3 form-group">
+                <label for="">Tecnologias</label>
+                <select class="form-select form-control" multiple formControlName="technology">
+                    <option value="Java">Java</option>
+                    <option value="PHP">PHP</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="C#">C#</option>
+                  </select>
+            </div>
+
+            <div formGroupName="frameworks" class="col-4 form-group">
+
+                <label for="">Frameworks</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="Angular" formControlName="angular">
+                    <label class="form-check-label" for="inlineCheckbox1">Angular</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="React" formControlName="react">
+                    <label class="form-check-label" for="inlineCheckbox2">React</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="Vue" formControlName="vue">
+                    <label class="form-check-label" for="inlineCheckbox3">Vue</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="Laravel" formControlName="laravel">
+                    <label class="form-check-label" for="inlineCheckbox3">Laravel</label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-4 form-group">
+                <label class="mb-1">Deseja participar da nossa Newsletter?</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input " type="radio" name="newsletter" value="yes" formControlName="newsletter">
+                    <label class="form-check-label">Sim</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="newsletter" value="no" formArrayName="newsletter">
+                    <label class="form-check-label">Não</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row my-2">
+            <div class="col-12">
+                <button (click)="sendEmployees(registerForm.value)" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary mx-2">Cadastrar</button>
+                <button type="reset" (click)="cancelRegister()" class="btn btn-light"> Cancelar</button>
+
+            </div>
+        </div>
+    </div>
+
+
+</form>
