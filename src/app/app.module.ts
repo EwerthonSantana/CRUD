@@ -13,6 +13,7 @@ import { EmployeesCreateComponent } from './employees/employees-create/employees
 import { EmployeesService } from './services/employees.service';
 import { LoginComponent } from './login/login.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { ControlErrorComponent } from './shared/control-error/control-error.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgxMaskModule } from 'ngx-mask';
     HomeComponent,
     HeaderComponent,
     EmployeesCreateComponent,
-    LoginComponent
+    LoginComponent,
+    ControlErrorComponent
   ],
   imports: [
     BrowserModule,

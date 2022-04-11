@@ -1,15 +1,18 @@
- {{registerForm.valid}} <br> {{registerForm.value | json}}
+{{registerForm.valid}} <br> {{registerForm.value | json}}
 
-
-<form [formGroup]="registerForm" novalidate>
+<form [formGroup]="registerForm" novalidate class=" needs-validation">
     <div class="container my-3">
         <div class="row">
             <div class="col-4 form-group">
                 <label for="">Nome</label>
-                <input type="text" formControlName="name" class="form-control">
+                <input type="text" formControlName="name" class="form-control is-valid">
                 <div *ngIf="registerForm.controls.name.touched &&
-                 registerForm.controls.name.invalid">
-                    <p class="text-danger my-1 py-1">Nome é Obrigatório.</p>
+                name.erros?.['required']">
+                    <p class="text-danger" style="height: 10px;">Campo Obrigatorio</p>
+                </div>
+                <div *ngIf="registerForm.controls.name.touched &&
+                registerForm.controls.name.erros?.['minlength']">
+                    <p class="text-danger" style="height: 10px;">mínimo de 5 caracteres</p>
                 </div>
 
             </div>
@@ -17,11 +20,19 @@
             <div class="col-4 form-group">
                 <label for="">CPF</label>
                 <input type="text" formControlName="cpf" class="form-control" mask="000.000.000-00">
+                <div *ngIf="registerForm.controls.cpf.touched &&
+                 registerForm.controls.cpf.invalid">
+                    <p class="text-danger" style="height: 10px;">Campo Inválido</p>
+                </div>
             </div>
 
             <div class="col-4 form-group">
                 <label for="">Telefone</label>
                 <input type="text" formControlName="fone" prefix="+55 " mask="(00) 00000-0000" class="form-control">
+                <div *ngIf="registerForm.controls.fone.touched &&
+                 registerForm.controls.fone.invalid">
+                    <p class="text-danger" style="height: 10px;">Campo Inválido</p>
+                </div>
             </div>
         </div>
 
@@ -29,13 +40,20 @@
             <div class="col-12 form-group">
                 <label for="">Email</label>
                 <input type="text" formControlName="email" class="form-control">
+                <div *ngIf="registerForm.controls.email.touched &&
+                 registerForm.controls.email.invalid">
+                    <p class="text-danger" style="height: 10px;">Campo Inválido</p>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12 form-group">
                 <label for="">Email Confirmação </label>
                 <input type="text" formControlName="emailConfirmation" class="form-control">
-                <p *ngIf="registerForm.controls.emailConfirmation.errors?.equalTo">equalTo error</p>
+                <div *ngIf="registerForm.controls.emailConfirmation.touched &&
+                registerForm.controls.emailConfirmation.invalid">
+                    <p class="text-danger" style="height: 10px;">Campo Inválido</p>
+                </div>
             </div>
         </div>
 
@@ -50,31 +68,37 @@
                 <div class="col-3 form-group">
                     <label for="">Número</label>
                     <input type="text" formControlName="houseNumber" class="form-control">
+
                 </div>
 
                 <div class="col-6 form-group">
                     <label for="">Complemento</label>
                     <input type="text" formControlName="complement" class="form-control">
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 form-group">
                     <label for="">Rua</label>
                     <input type="text" formControlName="street" class="form-control">
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-5 form-group">
                     <label for="">Bairro</label>
                     <input type="text" formControlName="district" class="form-control">
+
                 </div>
                 <div class="col-4 form-group">
                     <label for="">Cidade</label>
                     <input type="text" formControlName="city" class="form-control">
+
                 </div>
                 <div class="col-3 form-group">
                     <label for="">Estado</label>
                     <input type="text" formControlName="state" class="form-control">
+
                 </div>
 
             </div>
@@ -91,6 +115,10 @@
                     <option value="Analista de Sistemas">Analista de Sistemas</option>
                     <option value="Scrum Master">Scrum Master</option>
                   </select>
+                <div *ngIf="registerForm.controls.office.touched &&
+                  registerForm.controls.office.invalid">
+                    <p class="text-danger" style="height: 10px;">Campo Inválido</p>
+                </div>
             </div>
             <div class="col-3 form-group">
                 <label for="">Tecnologias</label>
@@ -100,6 +128,10 @@
                     <option value="JavaScript">JavaScript</option>
                     <option value="C#">C#</option>
                   </select>
+                <div *ngIf="registerForm.controls.technology.touched &&
+                    registerForm.controls.technology.invalid">
+                    <p class="text-danger" style="height: 10px;">Campo Inválido</p>
+                </div>
             </div>
 
             <div formGroupName="frameworks" class="col-4 form-group">
@@ -135,8 +167,22 @@
                     <label class="form-check-label">Sim</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="newsletter" value="no" formArrayName="newsletter">
+                    <input class="form-check-input" type="radio" name="newsletter" value="no" formControlName="newsletter">
                     <label class="form-check-label">Não</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4-formgroup">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" formControlName="terms">
+                    <label class="form-check-label">
+                      Concordo e aceito os termos de cadastro.
+                    </label>
+                </div>
+                <div *ngIf="registerForm.controls.terms.touched &&
+                registerForm.controls.terms.invalid">
+                    <p class="text-danger" style="height: 10px;">Campo Inválido</p>
                 </div>
             </div>
         </div>

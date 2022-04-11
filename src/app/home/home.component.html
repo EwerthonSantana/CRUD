@@ -1,28 +1,39 @@
 <div class="container my-3">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>
-                <th scope="col">Endereço</th>
-                <th scope="col">telefone</th>
-                <th *ngIf="checkLoggedIn()" scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let row of employees">
-                <td>{{row.name}}</td>
-                <td>{{row.email}}</td>
-                <td> {{row.adress.district + ", "+row.adress.street + ", " + row.adress.houseNumber}} {{row.adress.complement}}</td>
-                <td>{{row.fone}}</td>
-                <td *ngIf="checkLoggedIn()">
-                    <a *ngIf="checkLoggedIn()" role="button" (click)="updateEmploye(row.id)"> <i class="fa fa-pencil mx-2"></i> </a>
+    <div class="row">
+        <div class="col-md-12 d-flex bg-light justify-content-between align-items-center table-header">
+            <div class="table-name d-flex lign-items-center">
+                <p class=" lead primary-name ">Manage</p>
+                <p class="lead secundary-name "><strong>Employees</strong> </p>
+            </div>
+            <a *ngIf="checkLoggedIn()" role="button " class="btn btn-success" [routerLink]="['/register']"><i class="fa fa-plus-circle" aria-hidden="true"></i>add novo funcionário</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">telefone</th>
+                    <th *ngIf="checkLoggedIn()" scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of employees">
+                    <td>{{row.name}}</td>
+                    <td>{{row.email}}</td>
+                    <td> {{row.adress.district + ", "+row.adress.street + ", " + row.adress.houseNumber}} {{row.adress.complement}}</td>
+                    <td>{{row.fone}}</td>
+                    <td *ngIf="checkLoggedIn()">
+                        <a *ngIf="checkLoggedIn()" role="button" (click)="updateEmploye(row.id)"> <i class="fa fa-pencil mx-2"></i> </a>
 
 
-                    <a *ngIf="checkLoggedIn()" role="button" (click)="deleteEmploye(row.id)"> <i class="fa fa-trash"></i> </a>
-                </td>
-            </tr>
+                        <a *ngIf="checkLoggedIn()" role="button" (click)="deleteEmploye(row.id)"> <i class="fa fa-trash"></i> </a>
+                    </td>
+                </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>

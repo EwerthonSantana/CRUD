@@ -17,6 +17,5 @@ export class EmployeesModel {
         public technology: string,
         public frameworks: string,
         public newsletter: string
-
     ) { }
 }

@@ -3,7 +3,7 @@ import { equalsTo } from './Validators/equalsTo';
 import { CpfValidator } from './Validators/cpf';
 import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from 'src/app/services/employees.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { EmployeesModel } from './employees.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -20,6 +20,7 @@ export class EmployeesCreateComponent implements OnInit {
   registerForm!: any
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
   showTittle: boolean = true
+  static emailsNotMatch: boolean;
 
   constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
@@ -42,8 +43,8 @@ export class EmployeesCreateComponent implements OnInit {
       name: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(80)]),
       cpf: new FormControl(null, [Validators.required, CpfValidator.cpfValid]),
       fone: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required]),
-      emailConfirmation: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
+      emailConfirmation: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
       adress: new FormGroup({
         cep: new FormControl(null, [Validators.required]),
         houseNumber: new FormControl(null, [Validators.required]),
@@ -62,9 +63,31 @@ export class EmployeesCreateComponent implements OnInit {
         laravel: new FormControl()
       }),
       newsletter: new FormControl(null, [Validators.required]),
+      terms: new FormControl(null, [Validators.required])
 
     })
+
   }
+
+  get name() {
+    return this.registerForm.get('name')
+  }
+  
+
+
+  // static equalsTo(group: AbstractControl):  ValidationErrors | boolean {
+  //   const email = group.get('email')
+  //   const emailConfirmation = group.get('emailConfirmation')
+  //   if (!email || !emailConfirmation) {
+  //     return false
+  //   }
+
+  //   if (email.value !== emailConfirmation.value) {
+  //     return this.emailsNotMatch = true
+  //   }
+  //   return false
+  // }
+
 
   populedForm(datas: any) {
     this.registerForm.patchValue({

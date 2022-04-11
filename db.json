@@ -1,3 +1,32 @@
 {
-  "employees": []
+  "employees": [
+    {
+      "id": 1,
+      "name": "ewerthon",
+      "cpf": "115.216.104-01",
+      "fone": "+55 (81) 98528-1665",
+      "email": "ewerthon@gmail.com",
+      "emailConfirmation": "ewerthon@gmail.com",
+      "adress": {
+        "cep": "54325-295",
+        "houseNumber": "208",
+        "complement": "primeiro andar",
+        "street": "4ª Rua Nova Descoberta",
+        "district": "Guararapes",
+        "city": "Jaboatão dos Guararapes",
+        "state": "PE"
+      },
+      "office": "Engenheiro de Software",
+      "technology": [
+        "C#"
+      ],
+      "frameworks": {
+        "angular": true,
+        "react": false,
+        "vue": false,
+        "laravel": false
+      },
+      "newsletter": "yes"
+    }
+  ]
 }
