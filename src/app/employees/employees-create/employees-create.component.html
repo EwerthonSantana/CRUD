@@ -3,18 +3,9 @@
 <form [formGroup]="registerForm" novalidate class=" needs-validation">
     <div class="container my-3">
         <div class="row">
-            <div class="col-4 form-group">
+            <div class="col-4 form-group" [class.is-valid]="hasSucess('name')" [class.is-invalid]="hasError('name')">
                 <label for="">Nome</label>
-                <input type="text" formControlName="name" class="form-control is-valid">
-                <div *ngIf="registerForm.controls.name.touched &&
-                name.erros?.['required']">
-                    <p class="text-danger" style="height: 10px;">Campo Obrigatorio</p>
-                </div>
-                <div *ngIf="registerForm.controls.name.touched &&
-                registerForm.controls.name.erros?.['minlength']">
-                    <p class="text-danger" style="height: 10px;">mínimo de 5 caracteres</p>
-                </div>
-
+                <input type="text" formControlName="name" class="form-control">
             </div>
 
             <div class="col-4 form-group">

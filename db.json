@@ -27,6 +27,35 @@
         "laravel": false
       },
       "newsletter": "yes"
+    },
+    {
+      "id": 2,
+      "name": "ewewewewew",
+      "cpf": "115.216.104-01",
+      "fone": "+55 (81) 98528-1665",
+      "email": "teste@gmail.com",
+      "emailConfirmation": "teste@gmail.com",
+      "adress": {
+        "cep": "54325-295",
+        "houseNumber": "208",
+        "complement": "teste",
+        "street": "4ª Rua Nova Descoberta",
+        "district": "Guararapes",
+        "city": "Jaboatão dos Guararapes",
+        "state": "PE"
+      },
+      "office": "HelpDesk",
+      "technology": [
+        "C#"
+      ],
+      "frameworks": {
+        "angular": true,
+        "react": null,
+        "vue": null,
+        "laravel": null
+      },
+      "newsletter": "no",
+      "terms": true
     }
   ]
 }

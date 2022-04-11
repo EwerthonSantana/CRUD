@@ -37,7 +37,6 @@ export class EmployeesCreateComponent implements OnInit {
       }
     )
 
-
     this.registerForm = new FormGroup({
       id: new FormControl(),
       name: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(80)]),
@@ -68,12 +67,6 @@ export class EmployeesCreateComponent implements OnInit {
     })
 
   }
-
-  get name() {
-    return this.registerForm.get('name')
-  }
-  
-
 
   // static equalsTo(group: AbstractControl):  ValidationErrors | boolean {
   //   const email = group.get('email')
@@ -182,8 +175,14 @@ export class EmployeesCreateComponent implements OnInit {
 
   }
 
+  hasSucess(control: any): boolean {
+    return this.registerForm.get(control).valid && (this.registerForm.get(control).dirty || this.registerForm.get(control).touched)
+  }
 
+  hasError(control: any): boolean {
+    return this.registerForm.get(control).invalid && (this.registerForm.get(control).dirty || this.registerForm.get(control).touched)
 
+  }
 
 
 }
