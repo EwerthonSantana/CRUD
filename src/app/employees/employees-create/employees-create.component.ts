@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 
+
 @Component({
   selector: 'app-employees-create',
   templateUrl: './employees-create.component.html',
@@ -20,7 +21,7 @@ export class EmployeesCreateComponent implements OnInit {
   registerForm!: any
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
   showTittle: boolean = true
-  static emailsNotMatch: boolean;
+  states!: any
 
   constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
@@ -36,6 +37,8 @@ export class EmployeesCreateComponent implements OnInit {
         })
       }
     )
+
+    this.service.getStatesBr().subscribe(datas => { this.states = datas })
 
     this.registerForm = new FormGroup({
       id: new FormControl(),
@@ -116,14 +119,17 @@ export class EmployeesCreateComponent implements OnInit {
 
     if (this.registerForm.value.id) {
       this.service.putEmployees(this.registerForm.value).subscribe(response => {
-        alert('Empregado atualizado com sucesso!')
-        this.navigate()
+        alert('Empregado atualizado com sucesso!');
+        this.router.navigate(['/home']);
       })
     }
 
     else {
-      this.service.postEmployees(this.registerForm.value).subscribe(Response =>
-        this.navigate())
+      this.service.postEmployees(this.registerForm.value).subscribe(Response => {
+        alert('Empregado registrado com sucesso');
+        this.router.navigate(['/home'])
+      });
+
     }
   }
 
@@ -131,10 +137,6 @@ export class EmployeesCreateComponent implements OnInit {
     this.router.navigate(['/home'])
   }
 
-  navigate(): void {
-    alert('Empregado registrado com sucesso')
-    this.router.navigate(['/home'])
-  }
 
   //Faz a consulta da API ViaCep com tratamento do cep
   consultCEP() {
@@ -175,14 +177,17 @@ export class EmployeesCreateComponent implements OnInit {
 
   }
 
-  hasSucess(control: any): boolean {
-    return this.registerForm.get(control).valid && (this.registerForm.get(control).dirty || this.registerForm.get(control).touched)
+  verifyValidTouched(control: any) {
+    return !this.registerForm.get(control).valid
   }
 
-  hasError(control: any): boolean {
-    return this.registerForm.get(control).invalid && (this.registerForm.get(control).dirty || this.registerForm.get(control).touched)
 
+  cssValidation(control: any) {
+
+    return {
+      'is-invalid': this.verifyValidTouched(control) && this.registerForm.get(control).touched,
+      'is-valid': !this.verifyValidTouched(control) && this.registerForm.get(control).touched
+    }
   }
-
 
 }

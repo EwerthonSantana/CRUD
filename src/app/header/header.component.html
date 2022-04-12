@@ -5,7 +5,10 @@
     <li *ngIf="checkLoggedIn()" class="nav-item">
         <a class="nav-link" [routerLink]="['/register']">Registrar Funcionário</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!checkLoggedIn()">
         <a class="nav-link" [routerLink]="['/login']">Login</a>
+    </li>
+    <li class="nav-item" *ngIf="checkLoggedIn()">
+        <a role="button" class="nav-link" (click)="doLogoff()">Deslogar</a>
     </li>
 </ul>

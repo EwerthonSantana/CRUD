@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../API';
 import { Observable, take } from 'rxjs';
+import { statesBr } from '../employees/employees-create/statesBr.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,11 @@ deleteEmployees(id: any) {
 }
 
 
+// Métodos HTTP para buscar estados e cidades
 
-
+getStatesBr(){
+ return this.http.get<statesBr>('assets/datas/statesBR.json').pipe()
+}
 
 
 }

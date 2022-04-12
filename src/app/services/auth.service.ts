@@ -22,6 +22,10 @@ export class AuthService {
     }
   }
 
+  doLogoff(){
+    this.loggedIn = false
+  }
+
 
   userAuth(){
     return this.loggedIn

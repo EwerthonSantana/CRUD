@@ -18,4 +18,8 @@ checkLoggedIn(){
   return this.authService.loggedIn
 }
 
+doLogoff(){
+  return this.authService.doLogoff()
+}
+
 }
