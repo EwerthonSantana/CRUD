@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { equalsTo } from './Validators/equalsTo';
 import { CpfValidator } from './Validators/cpf';
+import { EqualsTo } from './Validators/equalsTo';
 import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from 'src/app/services/employees.service';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeesModel } from './employees.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-
-
 
 @Component({
   selector: 'app-employees-create',
@@ -46,7 +44,7 @@ export class EmployeesCreateComponent implements OnInit {
       cpf: new FormControl(null, [Validators.required, CpfValidator.cpfValid]),
       fone: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
-      emailConfirmation: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
+      emailConfirmation: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern), EqualsTo.equalsTo('email')]),
       adress: new FormGroup({
         cep: new FormControl(null, [Validators.required]),
         houseNumber: new FormControl(null, [Validators.required]),
@@ -68,22 +66,7 @@ export class EmployeesCreateComponent implements OnInit {
       terms: new FormControl(null, [Validators.required])
 
     })
-
   }
-
-  // static equalsTo(group: AbstractControl):  ValidationErrors | boolean {
-  //   const email = group.get('email')
-  //   const emailConfirmation = group.get('emailConfirmation')
-  //   if (!email || !emailConfirmation) {
-  //     return false
-  //   }
-
-  //   if (email.value !== emailConfirmation.value) {
-  //     return this.emailsNotMatch = true
-  //   }
-  //   return false
-  // }
-
 
   populedForm(datas: any) {
     this.registerForm.patchValue({

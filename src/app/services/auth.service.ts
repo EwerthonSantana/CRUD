@@ -17,17 +17,16 @@ export class AuthService {
       this.loggedIn = true;
       this.router.navigate(['/home'])
     } else {
-      this.loggedIn = false
-
+      alert('Email ou senha inválidos!')
     }
   }
 
-  doLogoff(){
+  doLogoff() {
     this.loggedIn = false
+    this.router.navigate(['/login'])
   }
 
-
-  userAuth(){
+  userAuth() {
     return this.loggedIn
   }
 

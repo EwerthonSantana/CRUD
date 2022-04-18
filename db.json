@@ -28,35 +28,6 @@
       },
       "newsletter": "no",
       "terms": true
-    },
-    {
-      "id": 4,
-      "name": "amanda",
-      "cpf": "115.216.104-01",
-      "fone": "+55 (11) 98541-2365",
-      "email": "ewerthon@gmail.com",
-      "emailConfirmation": "ewerthon@gmail.com",
-      "adress": {
-        "cep": "54705-280",
-        "houseNumber": "208",
-        "complement": "oitavo andar",
-        "street": "Rua Machado de Assis",
-        "district": "Capibaribe",
-        "city": "São Lourenço da Mata",
-        "state": "PE"
-      },
-      "office": "Analista de Sistemas",
-      "technology": [
-        "C#"
-      ],
-      "frameworks": {
-        "angular": true,
-        "react": false,
-        "vue": null,
-        "laravel": null
-      },
-      "newsletter": "yes",
-      "terms": true
     }
   ]
 }

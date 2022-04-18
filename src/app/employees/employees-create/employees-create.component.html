@@ -1,5 +1,3 @@
-{{registerForm.valid}} <br> {{registerForm.value | json}}
-
 <form [formGroup]="registerForm" novalidate class=" needs-validation">
     <div class="container my-3">
         <div class="row">
@@ -46,8 +44,11 @@
                 <label for="">Email Confirmação </label>
                 <input type="text" formControlName="emailConfirmation" class="form-control" [ngClass]="cssValidation('emailConfirmation')">
                 <div *ngIf="registerForm.controls.emailConfirmation.touched &&
-                registerForm.controls.emailConfirmation.invalid">
+                registerForm.get('emailConfirmation').hasError('required')">
                     <p class="text-danger" style="height: 10px;">Campo Inválido!</p>
+                </div>
+                <div *ngIf="registerForm.get('emailConfirmation').hasError('equalsTo') && registerForm.controls.emailConfirmation.touched">
+                    <p class="text-danger" style="height: 10px;">Emails não são iguais</p>
                 </div>
             </div>
         </div>
