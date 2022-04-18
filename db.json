@@ -1,24 +1,24 @@
 {
   "employees": [
     {
-      "id": 2,
-      "name": "ewewewewew",
+      "id": 1,
+      "name": "amanda",
       "cpf": "115.216.104-01",
-      "fone": "+55 (81) 98528-1665",
-      "email": "teste@gmail.com",
-      "emailConfirmation": "teste@gmail.com",
+      "fone": "+55 (81) 91234-5678",
+      "email": "amandinha@gmail.com",
+      "emailConfirmation": "amandinha@gmail.com",
       "adress": {
-        "cep": "54325-295",
-        "houseNumber": "208",
-        "complement": "teste",
-        "street": "4ª Rua Nova Descoberta",
+        "cep": "54325-291",
+        "houseNumber": "147",
+        "complement": "em baixo",
+        "street": "1ª Rua Nova Descoberta",
         "district": "Guararapes",
         "city": "Jaboatão dos Guararapes",
         "state": "PE"
       },
       "office": "HelpDesk",
       "technology": [
-        "C#"
+        "PHP"
       ],
       "frameworks": {
         "angular": true,
@@ -27,6 +27,38 @@
         "laravel": null
       },
       "newsletter": "no",
+      "terms": true
+    },
+    {
+      "id": 2,
+      "name": "ewerthon",
+      "cpf": "115.216.104-01",
+      "fone": "+55 (81) 98528-1665",
+      "email": "ewerthon@gmi.com",
+      "emailConfirmation": "ewerthon@gmi.com",
+      "adress": {
+        "cep": "54325-295",
+        "houseNumber": "208",
+        "complement": "em cima",
+        "street": "4ª Rua Nova Descoberta",
+        "district": "Guararapes",
+        "city": "Jaboatão dos Guararapes",
+        "state": "PE"
+      },
+      "office": "Engenheiro de Software",
+      "technology": [
+        "Java",
+        "PHP",
+        "JavaScript",
+        "C#"
+      ],
+      "frameworks": {
+        "angular": true,
+        "react": null,
+        "vue": true,
+        "laravel": true
+      },
+      "newsletter": "yes",
       "terms": true
     }
   ]

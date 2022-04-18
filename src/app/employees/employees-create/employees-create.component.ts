@@ -100,20 +100,39 @@ export class EmployeesCreateComponent implements OnInit {
 
   sendEmployees(form: any) {
 
-    if (this.registerForm.value.id) {
-      this.service.putEmployees(this.registerForm.value).subscribe(response => {
-        alert('Empregado atualizado com sucesso!');
-        this.router.navigate(['/home']);
-      })
-    }
+    if (this.registerForm.valid) {
 
-    else {
-      this.service.postEmployees(this.registerForm.value).subscribe(Response => {
-        alert('Empregado registrado com sucesso');
-        this.router.navigate(['/home'])
-      });
+      if (this.registerForm.value.id) {
+        this.service.putEmployees(this.registerForm.value).subscribe(response => {
+          alert('Empregado atualizado com sucesso!');
+          this.router.navigate(['/home']);
+        })
+      }
 
+      else {
+        this.service.postEmployees(this.registerForm.value).subscribe(Response => {
+          alert('Empregado registrado com sucesso');
+          this.router.navigate(['/home'])
+        });
+
+      }
+
+    } else {
+      this.verifyValidForm(this.registerForm);
     }
+  }
+
+  verifyValidForm(formGroup: FormGroup) {
+    console.log('Inválido')
+    Object.keys(formGroup.controls).forEach(controls => {
+      console.log(controls);
+      const control = formGroup.get(controls);
+      control!.markAsTouched();
+      console.log(control);
+      if (control instanceof FormGroup) {
+        this.verifyValidForm(control)
+      }
+    });
   }
 
   cancelRegister() {

@@ -17,8 +17,8 @@ postEmployees(req: EmployeesModel): Observable<EmployeesModel> {
   return this.http.post<EmployeesModel>(`${API}/employees`, req)
 }
 
-getEmployees(): Observable<EmployeesModel>{
-  return this.http.get<EmployeesModel>(`${API}/employees`)
+getEmployees(): Observable<EmployeesModel[]>{
+  return this.http.get<EmployeesModel[]>(`${API}/employees`)
 }
 
 getEmployeesById(id: any){
@@ -32,7 +32,6 @@ putEmployees(req: any){
 deleteEmployees(id: any) {
   return this.http.delete(`${API}/employees/${id}`)
 }
-
 
 // Métodos HTTP para buscar estados e cidades
 

@@ -1,6 +1,6 @@
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from '../services/employees.service';
 
 @Component({
@@ -10,23 +10,24 @@ import { EmployeesService } from '../services/employees.service';
 })
 export class HomeComponent implements OnInit {
 
-  employees: any
+  employees: any[] = []
   id: any
 
   constructor(private service: EmployeesService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    if(this.employees === null){
-      alert('Não há usuários cadastrados, cadastre alguns!')
-    } else {
-      this.readEmployees()
 
-    }
+    this.readEmployees()
+    console.log(this.employees);
+
   }
 
-  readEmployees(){
+  readEmployees() {
     this.service.getEmployees().subscribe(response => {
-      this.employees = response})
+      this.employees = response;
+      console.log(this.employees);
+
+    })
   }
 
   updateEmploye(id: any) {
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  checkLoggedIn(){
+  checkLoggedIn() {
     return this.authService.loggedIn
   }
 
