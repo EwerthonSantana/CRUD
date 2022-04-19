@@ -66,8 +66,8 @@
       "name": "rodrigo",
       "cpf": "115.216.104-01",
       "fone": "+55 (81) 98528-1656",
-      "email": "tese@gmail.co",
-      "emailConfirmation": "teste@gmail.com",
+      "email": "tese@gmail.com",
+      "emailConfirmation": "tese@gmail.com",
       "adress": {
         "cep": "54325-295",
         "houseNumber": "208",
@@ -86,38 +86,6 @@
         "react": null,
         "vue": null,
         "laravel": null
-      },
-      "newsletter": "no",
-      "terms": true
-    },
-    {
-      "id": 4,
-      "name": "teste",
-      "cpf": "115.216.104-01",
-      "fone": "+55 (56) 51261-5646",
-      "email": "djshdjk@gmail.co",
-      "emailConfirmation": "djshdjk@gmail.com",
-      "adress": {
-        "cep": "54325-250",
-        "houseNumber": "545",
-        "complement": "teste",
-        "street": "1ª Travessa Doutor Fábio Maranhão",
-        "district": "Guararapes",
-        "city": "Jaboatão dos Guararapes",
-        "state": "PE"
-      },
-      "office": "Engenheiro de Software",
-      "technology": [
-        "Java",
-        "PHP",
-        "JavaScript",
-        "C#"
-      ],
-      "frameworks": {
-        "angular": true,
-        "react": true,
-        "vue": true,
-        "laravel": true
       },
       "newsletter": "no",
       "terms": true

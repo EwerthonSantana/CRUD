@@ -195,13 +195,10 @@
         <div class="row">
             <div class="col-4 form-group">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" formControlName="terms">
+                    <input class="form-check-input" type="checkbox" formControlName="terms" [ngClass]="cssValidation('terms')" required>
                     <label class="form-check-label">
                       Concordo e aceito os termos de cadastro.
                     </label>
-                </div>
-                <div *ngIf="registerForm.get('terms').value === false">
-                    <p class="text-danger" style="height: 10px;">Aceite os termos para cadastrar</p>
                 </div>
             </div>
         </div>
