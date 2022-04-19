@@ -15,6 +15,7 @@ import { map } from 'rxjs/operators';
 })
 export class EmployeesCreateComponent implements OnInit {
 
+  send: boolean = false
   employees!: EmployeesModel
   registerForm!: any
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
@@ -66,6 +67,7 @@ export class EmployeesCreateComponent implements OnInit {
       terms: new FormControl(null, [Validators.required])
 
     })
+
   }
 
   populedForm(datas: any) {
@@ -106,6 +108,7 @@ export class EmployeesCreateComponent implements OnInit {
         this.service.putEmployees(this.registerForm.value).subscribe(response => {
           alert('Empregado atualizado com sucesso!');
           this.router.navigate(['/home']);
+         this.send = true;
         })
       }
 
@@ -113,6 +116,7 @@ export class EmployeesCreateComponent implements OnInit {
         this.service.postEmployees(this.registerForm.value).subscribe(Response => {
           alert('Empregado registrado com sucesso');
           this.router.navigate(['/home'])
+           this.send = true;
         });
 
       }
@@ -123,12 +127,10 @@ export class EmployeesCreateComponent implements OnInit {
   }
 
   verifyValidForm(formGroup: FormGroup) {
-    console.log('Inválido')
     Object.keys(formGroup.controls).forEach(controls => {
-      console.log(controls);
       const control = formGroup.get(controls);
       control!.markAsTouched();
-      console.log(control);
+      console.log(control)
       if (control instanceof FormGroup) {
         this.verifyValidForm(control)
       }
@@ -187,8 +189,8 @@ export class EmployeesCreateComponent implements OnInit {
   cssValidation(control: any) {
 
     return {
-      'is-invalid': this.verifyValidTouched(control) && this.registerForm.get(control).touched,
-      'is-valid': !this.verifyValidTouched(control) && this.registerForm.get(control).touched
+      'is-invalid': this.verifyValidTouched(control) && (this.registerForm.get(control).touched || this.registerForm.get(control).dirty),
+      'is-valid': !this.verifyValidTouched(control) && (this.registerForm.get(control).touched || this.registerForm.get(control).dirty)
     }
   }
 

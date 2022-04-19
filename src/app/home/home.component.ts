@@ -18,15 +18,11 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.readEmployees()
-    console.log(this.employees);
-
   }
 
   readEmployees() {
     this.service.getEmployees().subscribe(response => {
       this.employees = response;
-      console.log(this.employees);
-
     })
   }
 

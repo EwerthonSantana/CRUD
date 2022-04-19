@@ -13,8 +13,13 @@ export class UserDeactivateGuard implements CanDeactivate<EmployeesCreateCompone
         router: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | boolean {
         if (component.registerForm.valid && component.registerForm.dirty) {
+
+            if (component.send === true) {
+                return true;
+            }
             return confirm('Tem certeza que deseja sair do formulário?');
         }
+
         return true;
     }
 }

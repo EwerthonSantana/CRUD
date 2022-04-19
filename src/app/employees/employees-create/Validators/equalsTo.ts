@@ -19,17 +19,16 @@ export class EqualsTo {
         // porém, para garantir, vamos utilziar a root (raiz).
         const field = (<FormGroup>formControl.root).get(otherField);
 
-        if (!field) {
-          throw new Error('É necessário informar um campo válido.');
+        if (!field || !formControl) {
+          return { equalsTo: true };
         }
 
         if (field.value !== formControl.value) {
           // Aqui a validação propriamente feita, onde se não forem iguais, retornamos um erro.
           // Precisamos retornar um objeto com a propriedade de erro com seu nome, no caso
           // usamos o nome sendo equalsTo.
-          return { equalsTo: otherField };
-        }
-
+          return { equalsTo: true };
+        }      
         return null;
       }
       throw new Error('formControl não é uma instância de FormControl');
