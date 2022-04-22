@@ -130,7 +130,6 @@ export class EmployeesCreateComponent implements OnInit {
     Object.keys(formGroup.controls).forEach(controls => {
       const control = formGroup.get(controls);
       control!.markAsTouched();
-      console.log(control)
       if (control instanceof FormGroup) {
         this.verifyValidForm(control)
       }
@@ -181,7 +180,7 @@ export class EmployeesCreateComponent implements OnInit {
 
   }
 
-  verifyValidTouched(control: any) {
+  verifyValid(control: any) {
     return !this.registerForm.get(control).valid
   }
 
@@ -189,9 +188,10 @@ export class EmployeesCreateComponent implements OnInit {
   cssValidation(control: any) {
 
     return {
-      'is-invalid': this.verifyValidTouched(control) && (this.registerForm.get(control).touched || this.registerForm.get(control).dirty),
-      'is-valid': !this.verifyValidTouched(control) && (this.registerForm.get(control).touched || this.registerForm.get(control).dirty)
+      'is-invalid': this.verifyValid(control) && (this.registerForm.get(control).touched || this.registerForm.get(control).dirty),
+      'is-valid': !this.verifyValid(control) && (this.registerForm.get(control).touched || this.registerForm.get(control).dirty)
     }
+    
   }
 
 }
