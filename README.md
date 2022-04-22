@@ -1,3 +1,14 @@
+# Como usar?
+Primeiramente você deve ter o nodeJs na sua máquina.<br>
+
+Após clonar o repositório, dê o comando "npm i" ou "npm install" para baixar todas as dependências do projeto.<br>
+
+Agora você deve inicia-lo com o comando "ng s -o" para criar um servidor local e subir o projeto, abrindo uma página para você com a flag -o.<br>
+
+Você deve também iniciar o json-server em uma nova aba do cmd com o comando "json-server --watch db.json".<br>
+
+E pronto, você pode usar o progama normalmente.<br>
+
 # PlayerGround
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
