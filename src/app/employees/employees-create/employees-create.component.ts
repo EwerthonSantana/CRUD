@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 
+
 @Component({
   selector: 'app-employees-create',
   templateUrl: './employees-create.component.html',
@@ -67,19 +68,6 @@ export class EmployeesCreateComponent implements OnInit {
     })
 
   }
-
-  // static equalsTo(group: AbstractControl):  ValidationErrors | boolean {
-  //   const email = group.get('email')
-  //   const emailConfirmation = group.get('emailConfirmation')
-  //   if (!email || !emailConfirmation) {
-  //     return false
-  //   }
-
-  //   if (email.value !== emailConfirmation.value) {
-  //     return this.emailsNotMatch = true
-  //   }
-  //   return false
-  // }
 
 
   populedForm(datas: any) {

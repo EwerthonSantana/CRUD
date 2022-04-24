@@ -56,6 +56,35 @@
       },
       "newsletter": "no",
       "terms": true
+    },
+    {
+      "id": 3,
+      "name": "sadsadsd",
+      "cpf": "115.216.104-01",
+      "fone": "+55 (81) 98528-1665",
+      "email": "laksdjska@gmail.com",
+      "emailConfirmation": "laksdjska@gmail.com",
+      "adress": {
+        "cep": "54325-295",
+        "houseNumber": "208",
+        "complement": "",
+        "street": "4ª Rua Nova Descoberta",
+        "district": "Guararapes",
+        "city": "Jaboatão dos Guararapes",
+        "state": "PE"
+      },
+      "office": "HelpDesk",
+      "technology": [
+        "PHP"
+      ],
+      "frameworks": {
+        "angular": null,
+        "react": null,
+        "vue": null,
+        "laravel": null
+      },
+      "newsletter": "yes",
+      "terms": true
     }
   ]
 }
