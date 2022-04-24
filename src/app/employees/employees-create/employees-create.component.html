@@ -1,21 +1,21 @@
-<form [formGroup]="registerForm" novalidate class="needs-validation">
+<form [formGroup]="registerForm" novalidate class="needs-validation" autocomplete="on">
     <div class="container my-3">
         <div class="row">
             <div class="col-md-4 mb-3">
                 <app-control-input label="Nome *" errorMessage="Campo inválido!">
-                    <input type="text" formControlName="name" class="form-control" id="input" placeholder="floating">
+                    <input type="text" formControlName="name" class="form-control" id="input" value="input" placeholder="floating">
                 </app-control-input>
             </div>
 
             <div class="col-md-4 mb-3">
                 <app-control-input label="CPF *" errorMessage="Campo inválido!">
-                    <input type="text" formControlName="cpf" class="form-control" id="input" placeholder="floating">
+                    <input type="text" formControlName="cpf" class="form-control" id="input" placeholder="floating" mask="000.000.000-00">
                 </app-control-input>
             </div>
 
             <div class="col-md-4 mb-3">
                 <app-control-input label="Telefone *" errorMessage="Campo inválido!">
-                    <input type="text" formControlName="fone" class="form-control" id="input" placeholder="floating">
+                    <input type="text" formControlName="fone" class="form-control" id="input" placeholder="floating" mask="(00)00000-0000">
                 </app-control-input>
             </div>
         </div>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-md-3 mb-3">
                     <app-control-input label="Estado *" errorMessage="Campo inválido!">
-                        <select formControlName="state" class="form-select " id="input" aria-label="Floating">
+                        <select formControlName="state" class="form-select autocompletAdress" id="input" aria-label="Floating" readonly>
                             <option *ngFor="let state of states" [value]="state.initials">{{state.name}}</option>
                         </select>
                     </app-control-input>

@@ -1,3 +1,35 @@
 {
-  "employees": []
+  "employees": [
+    {
+      "id": 1,
+      "name": "Ewerthon",
+      "cpf": "115.216.104-01",
+      "fone": "(81)98528-1665",
+      "email": "ewerthon@gmail.com",
+      "emailConfirmation": "ewerthon@gmail.com",
+      "adress": {
+        "cep": "54325-295",
+        "houseNumber": "208",
+        "complement": "em cima",
+        "street": "4ª Rua Nova Descoberta",
+        "district": "Guararapes",
+        "city": "Jaboatão dos Guararapes",
+        "state": "PE"
+      },
+      "office": "Scrum Master",
+      "technology": [
+        "PHP",
+        "C",
+        "C++"
+      ],
+      "frameworks": {
+        "angular": true,
+        "react": null,
+        "vue": null,
+        "laravel": null
+      },
+      "newsletter": "yes",
+      "terms": true
+    }
+  ]
 }
