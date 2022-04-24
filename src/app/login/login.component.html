@@ -1,22 +1,21 @@
-<div class="container">
+<div class="wrap">
+    <div class="tittle text-center mb-2">
+        <h2>Login</h2>
+    </div>
     <form [formGroup]="loginForm" novalidate>
-        <div class="row">
-            <div class="col-3 form-group centered">
-                <label>Email</label>
-                <input type="text" formControlName="email" class="form-control">
-            </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" formControlName="email" class="form-control">
         </div>
-        <div class="row">
-            <div class="col-3 form-group centered">
-                <label>Senha</label>
-                <input type="password" formControlName="password" class="form-control">
-            </div>
+
+        <div class="form-group">
+            <label>Senha</label>
+            <input type="password" formControlName="password" class="form-control">
         </div>
-        <div class="row">
-            <div class="col-3 centered">
-                <button (click)="checkLogin()" [disabled]="loginForm.invalid" type="submit" class="btn btn-primary mx-2">Entrar</button>
-            </div>
+
+        <div class="mt-2 bt">
+            <button (click)="checkLogin()" [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Entrar</button>
         </div>
     </form>
-
 </div>

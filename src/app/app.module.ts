@@ -14,6 +14,8 @@ import { EmployeesService } from './services/employees.service';
 import { LoginComponent } from './login/login.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { ControlErrorComponent } from './shared/control-error/control-error.component';
+import { UserDeactivateGuard } from './guard/deactivate.guard';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ControlErrorComponent } from './shared/control-error/control-error.comp
     HeaderComponent,
     EmployeesCreateComponent,
     LoginComponent,
-    ControlErrorComponent
+    ControlErrorComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { ControlErrorComponent } from './shared/control-error/control-error.comp
       dropSpecialCharacters: false // ao salvar vai manter a máscara no db.json
     })
   ],
-  providers: [EmployeesService, AuthGuard],
+  providers: [EmployeesService, AuthGuard, UserDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,15 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { equalsTo } from './Validators/equalsTo';
 import { CpfValidator } from './Validators/cpf';
+import { EqualsTo } from './Validators/equalsTo';
 import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from 'src/app/services/employees.service';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeesModel } from './employees.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> acedc14154e123f78b4fe7fbbb1311e8af57a9c5
 @Component({
   selector: 'app-employees-create',
   templateUrl: './employees-create.component.html',
@@ -17,11 +20,12 @@ import { map } from 'rxjs/operators';
 })
 export class EmployeesCreateComponent implements OnInit {
 
+  send: boolean = false
   employees!: EmployeesModel
   registerForm!: any
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
   showTittle: boolean = true
-  static emailsNotMatch: boolean;
+  states!: any
 
   constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
@@ -38,13 +42,15 @@ export class EmployeesCreateComponent implements OnInit {
       }
     )
 
+    this.service.getStatesBr().subscribe(datas => { this.states = datas })
+
     this.registerForm = new FormGroup({
       id: new FormControl(),
       name: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(80)]),
       cpf: new FormControl(null, [Validators.required, CpfValidator.cpfValid]),
       fone: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
-      emailConfirmation: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
+      emailConfirmation: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern), EqualsTo.equalsTo('email')]),
       adress: new FormGroup({
         cep: new FormControl(null, [Validators.required]),
         houseNumber: new FormControl(null, [Validators.required]),
@@ -68,7 +74,6 @@ export class EmployeesCreateComponent implements OnInit {
     })
 
   }
-
 
   populedForm(datas: any) {
     this.registerForm.patchValue({
@@ -102,27 +107,44 @@ export class EmployeesCreateComponent implements OnInit {
 
   sendEmployees(form: any) {
 
-    if (this.registerForm.value.id) {
-      this.service.putEmployees(this.registerForm.value).subscribe(response => {
-        alert('Empregado atualizado com sucesso!')
-        this.navigate()
-      })
-    }
+    if (this.registerForm.valid) {
 
-    else {
-      this.service.postEmployees(this.registerForm.value).subscribe(Response =>
-        this.navigate())
+      if (this.registerForm.value.id) {
+        this.service.putEmployees(this.registerForm.value).subscribe(response => {
+          alert('Empregado atualizado com sucesso!');
+          this.router.navigate(['/home']);
+         this.send = true;
+        })
+      }
+
+      else {
+        this.service.postEmployees(this.registerForm.value).subscribe(Response => {
+          alert('Empregado registrado com sucesso');
+          this.router.navigate(['/home'])
+           this.send = true;
+        });
+
+      }
+
+    } else {
+      this.verifyValidForm(this.registerForm);
     }
+  }
+
+  verifyValidForm(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(controls => {
+      const control = formGroup.get(controls);
+      control!.markAsTouched();
+      if (control instanceof FormGroup) {
+        this.verifyValidForm(control)
+      }
+    });
   }
 
   cancelRegister() {
     this.router.navigate(['/home'])
   }
 
-  navigate(): void {
-    alert('Empregado registrado com sucesso')
-    this.router.navigate(['/home'])
-  }
 
   //Faz a consulta da API ViaCep com tratamento do cep
   consultCEP() {
@@ -163,14 +185,18 @@ export class EmployeesCreateComponent implements OnInit {
 
   }
 
-  hasSucess(control: any): boolean {
-    return this.registerForm.get(control).valid && (this.registerForm.get(control).dirty || this.registerForm.get(control).touched)
+  verifyValid(control: any) {
+    return !this.registerForm.get(control).valid
   }
 
-  hasError(control: any): boolean {
-    return this.registerForm.get(control).invalid && (this.registerForm.get(control).dirty || this.registerForm.get(control).touched)
+
+  cssValidation(control: any) {
+
+    return {
+      'is-invalid': this.verifyValid(control) && (this.registerForm.get(control).touched || this.registerForm.get(control).dirty),
+      'is-valid': !this.verifyValid(control) && (this.registerForm.get(control).touched || this.registerForm.get(control).dirty)
+    }
 
   }
-
 
 }

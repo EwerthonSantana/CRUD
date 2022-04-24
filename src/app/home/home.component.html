@@ -8,7 +8,11 @@
             <a *ngIf="checkLoggedIn()" role="button " class="btn btn-success" [routerLink]="['/register']"><i class="fa fa-plus-circle" aria-hidden="true"></i>add novo funcionário</a>
         </div>
     </div>
-    <div class="row">
+    <div *ngIf="employees.length <= 0" class="text-center">
+        <p class="lead">Nenhum empregado encontrado. Cadastre funcionários para vê-los listados aqui!</p>
+    </div>
+
+    <div *ngIf="employees.length > 0" class="row">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -27,8 +31,6 @@
                     <td>{{row.fone}}</td>
                     <td *ngIf="checkLoggedIn()">
                         <a *ngIf="checkLoggedIn()" role="button" (click)="updateEmploye(row.id)"> <i class="fa fa-pencil mx-2"></i> </a>
-
-
                         <a *ngIf="checkLoggedIn()" role="button" (click)="deleteEmploye(row.id)"> <i class="fa fa-trash"></i> </a>
                     </td>
                 </tr>
