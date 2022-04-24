@@ -16,6 +16,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { ControlInputComponent } from './shared/control-input/control-input.component';
 import { UserDeactivateGuard } from './guard/deactivate.guard';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { ControlErrorComponent } from './shared/control-error/control-error.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     EmployeesCreateComponent,
     LoginComponent,
     ControlInputComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ControlErrorComponent
   ],
   imports: [
     BrowserModule,
