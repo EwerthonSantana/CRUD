@@ -1,3 +1,4 @@
+import { DatasService } from './../../services/datas.service';
 import { HttpClient } from '@angular/common/http';
 import { CpfValidator } from './Validators/cpf';
 import { EqualsTo } from './Validators/equalsTo';
@@ -8,11 +9,6 @@ import { EmployeesModel } from './employees.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> acedc14154e123f78b4fe7fbbb1311e8af57a9c5
 @Component({
   selector: 'app-employees-create',
   templateUrl: './employees-create.component.html',
@@ -20,14 +16,17 @@ import { map } from 'rxjs/operators';
 })
 export class EmployeesCreateComponent implements OnInit {
 
-  send: boolean = false
-  employees!: EmployeesModel
-  registerForm!: any
-  emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-  showTittle: boolean = true
-  states!: any
+  send: boolean = false;
+  employees: EmployeesModel;
+  registerForm: any;
+  emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  showTittle: boolean = true;
+  states: any;
+  offices: any;
+  technologies: any;
 
-  constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient,
+    private datasService: DatasService) { }
 
   ngOnInit(): void {
 
@@ -42,34 +41,38 @@ export class EmployeesCreateComponent implements OnInit {
       }
     )
 
-    this.service.getStatesBr().subscribe(datas => { this.states = datas })
+    this.datasService.getTechnologies().subscribe(datas => { this.technologies = datas });
+
+    this.datasService.getOffices().subscribe(datas => { this.offices = datas });
+
+    this.datasService.getStatesBr().subscribe(datas => { this.states = datas });
 
     this.registerForm = new FormGroup({
       id: new FormControl(),
-      name: new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(80)]),
-      cpf: new FormControl(null, [Validators.required, CpfValidator.cpfValid]),
-      fone: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
-      emailConfirmation: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern), EqualsTo.equalsTo('email')]),
+      name: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(80)]),
+      cpf: new FormControl("", [Validators.required, CpfValidator.cpfValid]),
+      fone: new FormControl("", [Validators.required]),
+      email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
+      emailConfirmation: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern), EqualsTo.equalsTo('email')]),
       adress: new FormGroup({
-        cep: new FormControl(null, [Validators.required]),
-        houseNumber: new FormControl(null, [Validators.required]),
-        complement: new FormControl(null),
-        street: new FormControl(null, [Validators.required]),
-        district: new FormControl(null, [Validators.required]),
-        city: new FormControl(null, [Validators.required]),
-        state: new FormControl(null, [Validators.required])
+        cep: new FormControl("", [Validators.required]),
+        houseNumber: new FormControl("", [Validators.required]),
+        complement: new FormControl(""),
+        street: new FormControl("", [Validators.required]),
+        district: new FormControl("", [Validators.required]),
+        city: new FormControl("", [Validators.required]),
+        state: new FormControl("", [Validators.required])
       }),
-      office: new FormControl(null, [Validators.required]),
-      technology: new FormControl(null, [Validators.required]),
+      office: new FormControl("", [Validators.required]),
+      technology: new FormControl("", [Validators.required]),
       frameworks: new FormGroup({
         angular: new FormControl(),
         react: new FormControl(),
         vue: new FormControl(),
         laravel: new FormControl()
       }),
-      newsletter: new FormControl(null, [Validators.required]),
-      terms: new FormControl(null, [Validators.required])
+      newsletter: new FormControl("", [Validators.required]),
+      terms: new FormControl("", [Validators.required])
 
     })
 
@@ -113,7 +116,7 @@ export class EmployeesCreateComponent implements OnInit {
         this.service.putEmployees(this.registerForm.value).subscribe(response => {
           alert('Empregado atualizado com sucesso!');
           this.router.navigate(['/home']);
-         this.send = true;
+          this.send = true;
         })
       }
 
@@ -121,7 +124,7 @@ export class EmployeesCreateComponent implements OnInit {
         this.service.postEmployees(this.registerForm.value).subscribe(Response => {
           alert('Empregado registrado com sucesso');
           this.router.navigate(['/home'])
-           this.send = true;
+          this.send = true;
         });
 
       }
@@ -182,20 +185,6 @@ export class EmployeesCreateComponent implements OnInit {
         state: datas.uf
       }
     })
-
-  }
-
-  verifyValid(control: any) {
-    return !this.registerForm.get(control).valid
-  }
-
-
-  cssValidation(control: any) {
-
-    return {
-      'is-invalid': this.verifyValid(control) && (this.registerForm.get(control).touched || this.registerForm.get(control).dirty),
-      'is-valid': !this.verifyValid(control) && (this.registerForm.get(control).touched || this.registerForm.get(control).dirty)
-    }
 
   }
 

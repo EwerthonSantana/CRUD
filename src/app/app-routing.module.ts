@@ -8,8 +8,8 @@ import { UserDeactivateGuard } from './guard/deactivate.guard';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
-  {path: 'register', component: EmployeesCreateComponent, canActivate: [AuthGuard], canDeactivate: [UserDeactivateGuard]},
-  {path: 'update/:id', component: EmployeesCreateComponent, canActivate: [AuthGuard], canDeactivate: [UserDeactivateGuard]},
+  {path: 'register', component: EmployeesCreateComponent, canDeactivate: [UserDeactivateGuard]},
+  {path: 'update/:id', component: EmployeesCreateComponent, canDeactivate: [UserDeactivateGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: '', component: LoginComponent},

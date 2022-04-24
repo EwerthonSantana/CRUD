@@ -1,7 +1,7 @@
 import { AuthGuard } from './guard/auth.guard';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -13,7 +13,7 @@ import { EmployeesCreateComponent } from './employees/employees-create/employees
 import { EmployeesService } from './services/employees.service';
 import { LoginComponent } from './login/login.component';
 import { NgxMaskModule } from 'ngx-mask';
-import { ControlErrorComponent } from './shared/control-error/control-error.component';
+import { ControlInputComponent } from './shared/control-input/control-input.component';
 import { UserDeactivateGuard } from './guard/deactivate.guard';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 
@@ -24,7 +24,7 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     HeaderComponent,
     EmployeesCreateComponent,
     LoginComponent,
-    ControlErrorComponent,
+    ControlInputComponent,
     NotFoundComponent
   ],
   imports: [

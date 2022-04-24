@@ -1,31 +1,3 @@
 {
-    "employees": [{
-        "id": 1,
-        "name": "amanda",
-        "cpf": "115.216.104-01",
-        "fone": "+55 (81) 91234-5678",
-        "email": "amandinha@gmail.com",
-        "emailConfirmation": "amandinha@gmail.com",
-        "adress": {
-            "cep": "54325-291",
-            "houseNumber": "147",
-            "complement": "em baixo",
-            "street": "1ª Rua Nova Descoberta",
-            "district": "Guararapes",
-            "city": "Jaboatão dos Guararapes",
-            "state": "PE"
-        },
-        "office": "HelpDesk",
-        "technology": [
-            "PHP"
-        ],
-        "frameworks": {
-            "angular": true,
-            "react": null,
-            "vue": null,
-            "laravel": null
-        },
-        "newsletter": "no",
-        "terms": true
-    }]
+  "employees": []
 }

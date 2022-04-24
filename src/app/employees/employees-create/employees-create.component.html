@@ -1,150 +1,114 @@
 <form [formGroup]="registerForm" novalidate class="needs-validation">
     <div class="container my-3">
         <div class="row">
-            <div class="col-md-4 form-group">
-                <label for="">Nome*</label>
-                <input type="text" formControlName="name" class="form-control" [ngClass]="cssValidation('name')">
-                <div class="invalid-feedback">
-                    Campo obrigatório!
-                </div>
+            <div class="col-md-4 mb-3">
+                <app-control-input label="Nome *" errorMessage="Campo inválido!">
+                    <input type="text" formControlName="name" class="form-control" id="input" placeholder="floating">
+                </app-control-input>
             </div>
 
-            <div class="col-md-4 form-group">
-                <label for="">CPF*</label>
-                <input type="text" formControlName="cpf" class="form-control" mask="000.000.000-00" [ngClass]="cssValidation('cpf')">
-                <div class="invalid-feedback">
-                    Campo obrigatório!
-                </div>
+            <div class="col-md-4 mb-3">
+                <app-control-input label="CPF *" errorMessage="Campo inválido!">
+                    <input type="text" formControlName="cpf" class="form-control" id="input" placeholder="floating">
+                </app-control-input>
             </div>
 
-            <div class="col-md-4 form-group">
-                <label for="">Telefone*</label>
-                <input type="text" formControlName="fone" prefix="+55 " mask="(00) 00000-0000" class="form-control" [ngClass]="cssValidation('fone')">
-                <div class="invalid-feedback">
-                    Campo obrigatório!
-                </div>
+            <div class="col-md-4 mb-3">
+                <app-control-input label="Telefone *" errorMessage="Campo inválido!">
+                    <input type="text" formControlName="fone" class="form-control" id="input" placeholder="floating">
+                </app-control-input>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12 form-group">
-                <label for="">Email*</label>
-                <input type="text" formControlName="email" class="form-control" [ngClass]="cssValidation('email')">
-                <div class="invalid-feedback">
-                    Campo obrigatório!
-                </div>
+            <div class="col-12 mb-3">
+                <app-control-input label="Email *" errorMessage="Campo inválido!">
+                    <input type="text" formControlName="email" class="form-control" id="input" placeholder="floating">
+                </app-control-input>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 form-group">
-                <label for="">Confirmação Email*</label>
-                <input type="text" formControlName="emailConfirmation" class="form-control" [ngClass]="cssValidation('emailConfirmation')">
-                <div class="invalid-feedback">
-                    Emails não conferem!
-                </div>
+            <div class="col-12 mb-3">
+                <app-control-input label="Confirmação Email *" errorMessage="Campo inválido!">
+                    <input type="text" formControlName="emailConfirmation" class="form-control" id="input"
+                        placeholder="floating">
+                </app-control-input>
             </div>
         </div>
 
         <div formGroupName="adress">
 
             <div class="row">
-                <div class="col-md-3 form-group">
-                    <label for="">CEP*</label>
-                    <input (blur)="consultCEP()" type="text" formControlName="cep" class="form-control" mask="00000-000" [ngClass]="cssValidation('adress.cep')">
-                    <div class="invalid-feedback">
-                        Campo obrigatório!
-                    </div>
+                <div class="col-md-3 mb-3">
+                    <app-control-input label="CEP *">
+                        <input (blur)="consultCEP()" placeholder="floating" type="text" formControlName="cep"
+                            class="form-control" mask="00000-000">
+                    </app-control-input>
                 </div>
 
-                <div class="col-md-3 form-group">
-                    <label for="">Número*</label>
-                    <input type="text" formControlName="houseNumber" class="form-control" [ngClass]="cssValidation('adress.houseNumber')">
-                    <div class="invalid-feedback">
-                        Campo obrigatório!
-                    </div>
+                <div class="col-md-3 mb-3">
+                    <app-control-input label="Número *" errorMessage="Campo inválido!">
+                        <input type="text" formControlName="houseNumber" class="form-control" id="input"
+                            placeholder="floating">
+                    </app-control-input>
                 </div>
 
-                <div class="col-md-6 form-group">
-                    <label for="">Complemento</label>
-                    <input type="text" formControlName="complement" class="form-control" [ngClass]="cssValidation('adress.complement')">
-
+                <div class="col-md-6 mb-3">
+                    <app-control-input label="Complemento" errorMessage="Campo inválido!">
+                        <input type="text" formControlName="complement" class="form-control" id="input"
+                            placeholder="floating">
+                    </app-control-input>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 form-group">
-                    <label for="">Rua*</label>
-                    <input type="text" formControlName="street" class="form-control autocompletAdress" [ngClass]="cssValidation('adress.street')" readonly>
-                    <div class="invalid-feedback">
-                        Campo obrigatório!
-                    </div>
+                <div class="col-12 mb-3">
+                    <app-control-input label="Rua *" errorMessage="Campo inválido!">
+                        <input type="text" formControlName="street" class="form-control autocompletAdress" id="input"
+                            placeholder="floating" readonly>
+                    </app-control-input>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5 form-group">
-                    <label for="">Bairro*</label>
-                    <input type="text" formControlName="district" class="form-control autocompletAdress" [ngClass]="cssValidation('adress.district')" readonly>
-                    <div class="invalid-feedback">
-                        Campo obrigatório!
-                    </div>
+                <div class="col-md-5 mb-3">
+                    <app-control-input label="Bairro *" errorMessage="Campo inválido!">
+                        <input type="text" formControlName="district" class="form-control autocompletAdress" id="input"
+                            placeholder="floating" readonly>
+                    </app-control-input>
                 </div>
-                <div class="col-md-4 form-group">
-                    <label for="">Cidade*</label>
-                    <input type="text" formControlName="city" class="form-control autocompletAdress" [ngClass]="cssValidation('adress.city')" readonly>
-                    <div class="invalid-feedback">
-                        Campo obrigatório!
-                    </div>
+                <div class="col-md-4 mb-3">
+                    <app-control-input label="Cidade *" errorMessage="Campo inválido!">
+                        <input type="text" formControlName="city" class="form-control autocompletAdress" id="input"
+                            placeholder="floating" readonly>
+                    </app-control-input>
                 </div>
-                <div class="col-md-3 form-group">
-                    <label for="">Estado*</label>
-                    <select formControlName="state" class="form-select form-control autocompletAdress" [ngClass]="cssValidation('adress.state')" readonly>
-                        <option *ngFor="let state of states" [value]="state.initials">{{state.name}}</option>
+                <div class="col-md-3 mb-3">
+                    <app-control-input label="Estado *" errorMessage="Campo inválido!">
+                        <select formControlName="state" class="form-select " id="input" aria-label="Floating">
+                            <option *ngFor="let state of states" [value]="state.initials">{{state.name}}</option>
                         </select>
-                    <div class="invalid-feedback">
-                        Campo obrigatório!
-                    </div>
+                    </app-control-input>
                 </div>
 
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-3 form-group">
-                <label>Cargo*</label>
-                <select class="form-select control-form" formControlName="office" [ngClass]="cssValidation('office')">
-                    <option selected hidden></option>
-                    <option value="Gerente de Projetos">Gerente de Projetos</option>
-                    <option value="HelpDesk">HelpDesk</option>
-                    <option value="Engenheiro de Software">Engenheiro de Software</option>
-                    <option value="Analista de Sistemas">Analista de Sistemas</option>
-                    <option value="Scrum Master">Scrum Master</option>
-                  </select>
-                <div class="invalid-feedback">
-                    Selecione um cargo!
-                </div>
+            <div class="col-md-3 mb-3">
+                <app-control-input label="Cargo *" errorMessage="Campo inválido!">
+                    <select formControlName="office" class="form-select" id="input" aria-label="Floating">
+                        <option *ngFor="let office of offices" [value]="office.name">{{office.name}}</option>
+                    </select>
+                </app-control-input>
             </div>
-            <div class="col-md-3 form-group">
-                <label for="">Tecnologias*</label>
-                <select class="form-select form-control" multiple formControlName="technology" [ngClass]="cssValidation('technology')">
-                    <option value="Java">Java</option>
-                    <option value="PHP">PHP</option>
-                    <option value="JavaScript">JavaScript</option>
-                    <option value="C#">C#</option>
-                    <option value="C++#">C++</option>
-                    <option value="TypeScript">TypeScript</option>
-                    <option value="Ruby">Ruby</option>
-                    <option value="Swift">Swift</option>
-                    <option value="Scala">Scala</option>
-                    <option value="Dart">Dart</option>
-                    <option value="Python">Python</option>
-                    <option value="C">C</option>
-                    <option value="R">R</option>
+            <div class="col-md-3 mb-3">
+                <select formControlName="technology" class="form-select" multiple>
+                    <option *ngFor="let technology of technologies" [value]="technology.name">{{technology.name}}
+                    </option>
                 </select>
-                <div class="invalid-feedback">
-                    Selecione alguma tecnologia!
-                </div>
+
             </div>
 
-            <div formGroupName="frameworks" class="col-md-4 form-group">
+            <div formGroupName="frameworks" class="col-md-4 mb-3">
 
                 <label for="">Frameworks</label>
                 <br>
@@ -169,25 +133,27 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 form-group">
+            <div class="col-md-4 mb-3">
                 <label class="mb-1">Deseja participar da nossa Newsletter?</label>
                 <br>
                 <div class="form-check form-check-inline">
-                    <input checked class="form-check-input" type="radio" name="newsletter" value="yes" formControlName="newsletter" [ngClass]="cssValidation('newsletter')">
+                    <input checked class="form-check-input" type="radio" name="newsletter" value="yes"
+                        formControlName="newsletter">
                     <label class="form-check-label">Sim</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="newsletter" value="no" formControlName="newsletter" [ngClass]="cssValidation('newsletter')">
+                    <input class="form-check-input" type="radio" name="newsletter" value="no"
+                        formControlName="newsletter">
                     <label class="form-check-label">Não</label>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 form-group">
+            <div class="col-md-4">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" formControlName="terms" [ngClass]="cssValidation('terms')" required>
+                    <input class="form-check-input" type="checkbox" formControlName="terms" required>
                     <label class="form-check-label">
-                      Concordo e aceito os termos de cadastro.
+                        Concordo e aceito os termos de cadastro.
                     </label>
                     <div class="invalid-feedback">
                         É preciso aceitar os termos.
@@ -197,10 +163,10 @@
             </div>
         </div>
 
-
         <div class="row my-2">
             <div class="col-12">
-                <button (click)="sendEmployees(registerForm.value)" type="submit" class="btn btn-primary mx-2">Salvar</button>
+                <button (click)="sendEmployees(registerForm.value)" type="submit"
+                    class="btn btn-primary mx-2">Salvar</button>
                 <button type="reset" (click)="cancelRegister()" class="btn btn-light">Cancelar</button>
             </div>
         </div>

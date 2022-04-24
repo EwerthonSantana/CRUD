@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Gerente de Projetos"
+    },
+    {
+        "id": 2,
+        "name": "Engenheiro de Software"
+    },
+    {
+        "id": 3,
+        "name": "Scrum Master"
+    },
+    {
+        "id": 4,
+        "name": "Analista de Sistemas"
+    },
+    {
+        "id": 5,
+        "name": "HelpDesk"
+    },
+    {
+        "id": 6,
+        "name": "DBA"
+    }
+]

@@ -13,31 +13,24 @@ export class EmployeesService {
   constructor(private http: HttpClient) { }
 
 
-postEmployees(req: EmployeesModel): Observable<EmployeesModel> {
-  return this.http.post<EmployeesModel>(API, req)
-}
+  postEmployees(req: EmployeesModel): Observable<EmployeesModel> {
+    return this.http.post<EmployeesModel>(API, req)
+  }
 
-getEmployees(): Observable<EmployeesModel[]>{
-  return this.http.get<EmployeesModel[]>(API)
-}
+  getEmployees(): Observable<EmployeesModel[]> {
+    return this.http.get<EmployeesModel[]>(API)
+  }
 
-getEmployeesById(id: any){
-  return this.http.get(`${API}/${id}`).pipe(take(1))
-}
+  getEmployeesById(id: any) {
+    return this.http.get(`${API}/${id}`).pipe(take(1))
+  }
 
-putEmployees(req: any){
-  return this.http.put(`${API}/${req.id}`, req)
-}
+  putEmployees(req: any) {
+    return this.http.put(`${API}/${req.id}`, req)
+  }
 
-deleteEmployees(id: any) {
-  return this.http.delete(`${API}/${id}`)
-}
-
-// Métodos HTTP para buscar estados e cidades
-
-getStatesBr(){
- return this.http.get<statesBr>('assets/datas/statesBR.json').pipe()
-}
-
+  deleteEmployees(id: any) {
+    return this.http.delete(`${API}/${id}`)
+  }
 
 }
