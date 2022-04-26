@@ -2,7 +2,7 @@ import { DatasService } from './../../services/datas.service';
 import { HttpClient } from '@angular/common/http';
 import { CpfValidator } from './Validators/cpf';
 import { EqualsTo } from './Validators/equalsTo';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { EmployeesService } from 'src/app/services/employees.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeesModel } from './employees.model';
@@ -20,10 +20,11 @@ export class EmployeesCreateComponent implements OnInit {
   employees: EmployeesModel;
   registerForm: any;
   emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  showTittle: boolean = true;
   states: any;
   offices: any;
   technologies: any;
+
+  @ViewChild('terms') terms: HTMLInputElement;
 
   constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient,
     private datasService: DatasService) { }
@@ -187,5 +188,25 @@ export class EmployeesCreateComponent implements OnInit {
     })
 
   }
+
+  acceptTerms(){
+    this.registerForm.get('terms').setValue(true);
+    let closeModal = document.getElementById('outModal');
+    closeModal.click();
+  }
+
+  verifyValid(control: any): boolean {
+    return this.registerForm.get(control).valid;
+
+  }
+
+
+  setCssValidator(control: any) {
+    return {
+      'is-valid': this.verifyValid(control) && this.registerForm.get(control).touched,
+      'is-invalid': !this.verifyValid(control) && this.registerForm.get(control).touched
+    }
+  }
+
 
 }

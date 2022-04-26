@@ -32,9 +32,8 @@ export class HomeComponent implements OnInit {
 
   deleteEmploye(id: any) {
     this.service.deleteEmployees(id).subscribe(response => {
-      alert('Empregado deletado com Sucesso!')
-      this.router.navigate(['/home'])
-      this.readEmployees()
+      alert('Empregado deletado com Sucesso!');
+      this.readEmployees();
     })
   }
 

@@ -2,37 +2,39 @@
     <div class="container my-3">
         <div class="row">
             <div class="col-md-4 mb-3">
-                <app-control-input label="Nome *" errorMessage="Campo inválido!">
-                    <input type="text" formControlName="name" class="form-control" id="input" value="input" placeholder="floating">
-                    <app-control-error></app-control-error>
+                <app-control-input label="Nome *">
+                    <input type="text" formControlName="name" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('name')">
                 </app-control-input>
+
             </div>
 
             <div class="col-md-4 mb-3">
-                <app-control-input label="CPF *" errorMessage="Campo inválido!">
-                    <input type="text" formControlName="cpf" class="form-control" id="input" placeholder="floating" mask="000.000.000-00">
+                <app-control-input label="CPF *">
+                    <input type="text" formControlName="cpf" class="form-control" id="input" placeholder="floating" mask="000.000.000-00" [ngClass]="setCssValidator('cpf')">
                 </app-control-input>
+
             </div>
 
             <div class="col-md-4 mb-3">
-                <app-control-input label="Telefone *" errorMessage="Campo inválido!">
-                    <input type="text" formControlName="fone" class="form-control" id="input" placeholder="floating" mask="(00)00000-0000">
+                <app-control-input label="Telefone *">
+                    <input type="text" formControlName="fone" class="form-control" id="input" placeholder="floating" mask="(00)00000-0000" [ngClass]="setCssValidator('fone')">
                 </app-control-input>
+
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 mb-3">
-                <app-control-input label="Email *" errorMessage="Campo inválido!">
-                    <input type="text" formControlName="email" class="form-control" id="input" placeholder="floating">
+                <app-control-input label="Email *">
+                    <input type="text" formControlName="email" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('email')">
                 </app-control-input>
+
             </div>
         </div>
         <div class="row">
             <div class="col-12 mb-3">
-                <app-control-input label="Confirmação Email *" errorMessage="Campo inválido!">
-                    <input type="text" formControlName="emailConfirmation" class="form-control" id="input"
-                        placeholder="floating">
+                <app-control-input label="Confirmação Email *">
+                    <input type="text" formControlName="emailConfirmation" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('emailConfirmation')">
                 </app-control-input>
             </div>
         </div>
@@ -42,49 +44,43 @@
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <app-control-input label="CEP *">
-                        <input (blur)="consultCEP()" placeholder="floating" type="text" formControlName="cep"
-                            class="form-control" mask="00000-000">
+                        <input (blur)="consultCEP()" placeholder="floating" type="text" formControlName="cep" class="form-control" mask="00000-000" [ngClass]="setCssValidator('adress.cep')">
                     </app-control-input>
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <app-control-input label="Número *" errorMessage="Campo inválido!">
-                        <input type="text" formControlName="houseNumber" class="form-control" id="input"
-                            placeholder="floating">
+                    <app-control-input label="Número *">
+                        <input type="text" formControlName="houseNumber" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.houseNumber')">
                     </app-control-input>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <app-control-input label="Complemento" errorMessage="Campo inválido!">
-                        <input type="text" formControlName="complement" class="form-control" id="input"
-                            placeholder="floating">
+                    <app-control-input label="Complemento">
+                        <input type="text" formControlName="complement" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.complement')">
                     </app-control-input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 mb-3">
-                    <app-control-input label="Rua *" errorMessage="Campo inválido!">
-                        <input type="text" formControlName="street" class="form-control autocompletAdress" id="input"
-                            placeholder="floating" readonly>
+                    <app-control-input label="Rua *">
+                        <input type="text" formControlName="street" class="form-control autocompletAdress" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.street')" readonly>
                     </app-control-input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-5 mb-3">
-                    <app-control-input label="Bairro *" errorMessage="Campo inválido!">
-                        <input type="text" formControlName="district" class="form-control autocompletAdress" id="input"
-                            placeholder="floating" readonly>
+                    <app-control-input label="Bairro *">
+                        <input type="text" formControlName="district" class="form-control autocompletAdress" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.district')" readonly>
                     </app-control-input>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <app-control-input label="Cidade *" errorMessage="Campo inválido!">
-                        <input type="text" formControlName="city" class="form-control autocompletAdress" id="input"
-                            placeholder="floating" readonly>
+                    <app-control-input label="Cidade *">
+                        <input type="text" formControlName="city" class="form-control autocompletAdress" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.city')" readonly>
                     </app-control-input>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <app-control-input label="Estado *" errorMessage="Campo inválido!">
-                        <select formControlName="state" class="form-select autocompletAdress" id="input" aria-label="Floating" readonly>
+                    <app-control-input label="Estado *">
+                        <select formControlName="state" class="form-select autocompletAdress" id="input" aria-label="Floating" [ngClass]="setCssValidator('adress.state')" readonly>
                             <option *ngFor="let state of states" [value]="state.initials">{{state.name}}</option>
                         </select>
                     </app-control-input>
@@ -95,14 +91,14 @@
 
         <div class="row">
             <div class="col-md-3 mb-3">
-                <app-control-input label="Cargo *" errorMessage="Campo inválido!">
-                    <select formControlName="office" class="form-select" id="input" aria-label="Floating">
+                <app-control-input label="Cargo *">
+                    <select formControlName="office" class="form-select" id="input" aria-label="Floating" [ngClass]="setCssValidator('office')">
                         <option *ngFor="let office of offices" [value]="office.name">{{office.name}}</option>
                     </select>
                 </app-control-input>
             </div>
             <div class="col-md-3 mb-3">
-                <select formControlName="technology" class="form-select" multiple>
+                <select formControlName="technology" class="form-select" [ngClass]="setCssValidator('technology')" multiple>
                     <option *ngFor="let technology of technologies" [value]="technology.name">{{technology.name}}
                     </option>
                 </select>
@@ -135,16 +131,14 @@
 
         <div class="row">
             <div class="col-md-4 mb-3">
-                <label class="mb-1">Deseja participar da nossa Newsletter?</label>
+                <label class="mb-1">Deseja participar da nossa Newsletter? </label>
                 <br>
                 <div class="form-check form-check-inline">
-                    <input checked class="form-check-input" type="radio" name="newsletter" value="yes"
-                        formControlName="newsletter">
+                    <input checked class="form-check-input" type="radio" name="newsletter" value="yes" formControlName="newsletter" [ngClass]="setCssValidator('newsletter')">
                     <label class="form-check-label">Sim</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="newsletter" value="no"
-                        formControlName="newsletter">
+                    <input class="form-check-input" type="radio" name="newsletter" value="no" formControlName="newsletter" [ngClass]="setCssValidator('newsletter')">
                     <label class="form-check-label">Não</label>
                 </div>
             </div>
@@ -152,9 +146,10 @@
         <div class="row">
             <div class="col-md-4 mb-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" formControlName="terms" required>
+                    <input class="form-check-input" #terms formControlName="terms" type="checkbox" [ngClass]="setCssValidator('terms')" required>
                     <label class="form-check-label">
-                        Concordo e aceito os termos de cadastro.
+                        Concordo e aceito os <a role="button" class="text-reset" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">termos</a> de cadastro.
                     </label>
                     <div class="invalid-feedback">
                         É preciso aceitar os termos.
@@ -166,9 +161,28 @@
 
         <div class="row my-2">
             <div class="col-12">
-                <button (click)="sendEmployees(registerForm.value)" type="submit"
-                    class="btn btn-primary mx-2">Salvar</button>
-                <button type="reset" (click)="cancelRegister()" class="btn btn-light">Cancelar</button>
+                <button (click)="sendEmployees(registerForm.value)" type="submit" class="btn btn-primary mx-2">Salvar</button>
+                <button type="reset" class="btn btn-light">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Termos de Cadastro de funcionário.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum, veniam ut sapiente itaque culpa, nesciunt quos maiores ab vero maxime enim totam temporibus illo. Aspernatur culpa vitae sapiente quae iusto laboriosam saepe, praesentium voluptates totam
+                    voluptas laudantium? Modi sequi corporis vel praesentium voluptate quae sit magni et. Assumenda, tenetur ullam!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="outModal" data-bs-dismiss="modal">Sair</button>
+                    <button type="button" class="btn btn-primary" (click)="acceptTerms()">Aceitar Termos</button>
+                </div>
             </div>
         </div>
     </div>

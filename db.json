@@ -1,34 +1,35 @@
 {
   "employees": [
     {
-      "id": 1,
-      "name": "Ewerthon",
+      "id": 2,
+      "name": "amanda",
       "cpf": "115.216.104-01",
-      "fone": "(81)98528-1665",
-      "email": "ewerthon@gmail.com",
-      "emailConfirmation": "ewerthon@gmail.com",
+      "fone": "(89)12345-6788",
+      "email": "amanda@gmail.com",
+      "emailConfirmation": "amanda@gmail.com",
       "adress": {
-        "cep": "54325-295",
-        "houseNumber": "208",
-        "complement": "em cima",
-        "street": "4ª Rua Nova Descoberta",
-        "district": "Guararapes",
-        "city": "Jaboatão dos Guararapes",
+        "cep": "54580-270",
+        "houseNumber": "455",
+        "complement": "(Lot Ia Gleba III)",
+        "street": "Rua H",
+        "district": "Ponte dos Carvalhos",
+        "city": "Cabo de Santo Agostinho",
         "state": "PE"
       },
-      "office": "Scrum Master",
+      "office": "Gerente de Projetos",
       "technology": [
+        "JAVA",
         "PHP",
         "C",
         "C++"
       ],
       "frameworks": {
         "angular": true,
-        "react": null,
-        "vue": null,
+        "react": true,
+        "vue": true,
         "laravel": null
       },
-      "newsletter": "yes",
+      "newsletter": "no",
       "terms": true
     }
   ]

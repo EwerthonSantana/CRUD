@@ -8,18 +8,15 @@ import { FormControlName } from '@angular/forms';
 })
 export class ControlErrorComponent implements OnInit {
 
+  @Input() hasError: boolean;
   @Input() errorMessage: string;
-  input: any;
-
-  @ContentChild(FormControlName) control: FormControlName
+  
 
   constructor() { }
 
   ngOnInit(): void {
-  }
 
-  ngAfterContentInit() {
-    this.input = this.control
+   
   }
 
 
