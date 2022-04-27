@@ -18,11 +18,11 @@ const routes: Routes = [
     children: [
       { path: '', component: ListEmployeesComponent },
       {
-        path: 'registerEmployess', component: EmployeesFormComponent
+        path: 'registerEmployess', component: EmployeesFormComponent, canDeactivate: [UserDeactivateGuard]
 
       },
       {
-        path: 'update/:id', component: EmployeesFormComponent
+        path: 'update/:id', component: EmployeesFormComponent, canDeactivate: [UserDeactivateGuard]
       }
 
     ], canActivate: [AuthGuard]

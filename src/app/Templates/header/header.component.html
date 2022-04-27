@@ -1,8 +1,17 @@
-<ul class="nav bg-secondary">
+<ul class="d-flex nav bg-secondary">
     <li class="nav-item brand">
         <a class="nav-link" routerLinkActive="active" [routerLink]="['/']">Início</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" [routerLink]="['/registerEmployess']">Registrar Funcionário</a>
     </li>
+    <li class="nav-item">
+        <a role="button" *ngIf="LoggedIn()" class="nav-link" (click)="doLogoff()">Sair</a>
+    </li>
+
+
+    <div class="text-white justify-content-end">
+        <p>Bem vindo {{name | uppercase}}!</p>
+    </div>
+
 </ul>

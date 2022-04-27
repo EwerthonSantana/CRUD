@@ -8,18 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  name: any = "Ewerthon";
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    // this.name = this.authService.userMocked.name;
   }
 
+  LoggedIn() {
+    return window.sessionStorage.length;
+  }
 
-checkLoggedIn(){
-  return this.authService.loggedIn
-}
-
-doLogoff(){
-  return this.authService.doLogoff()
-}
+  doLogoff() {
+    return this.authService.Logoff();
+  }
 
 }

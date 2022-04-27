@@ -7,27 +7,24 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  public loggedIn: boolean = false
+  userMocked: UserModel;
 
   constructor(private router: Router) { }
 
-  doLogin(user: UserModel) {
+  login(user: UserModel) {
     if (user.email === 'ewerthon@gmail.com' &&
       user.password === '123') {
-      this.loggedIn = true;
+        this.userMocked = user;
+      window.sessionStorage.setItem('user', user.email);
       this.router.navigate(['/'])
     } else {
       alert('Email ou senha inválidos!')
     }
   }
 
-  doLogoff() {
-    this.loggedIn = false
-    this.router.navigate(['/login'])
-  }
-
-  userAuth() {
-    return this.loggedIn;
+  Logoff() {
+    window.sessionStorage.clear();
+    this.router.navigate(['/login']);
   }
 
 }

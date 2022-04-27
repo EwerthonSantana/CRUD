@@ -4,9 +4,14 @@
     </div>
     <form [formGroup]="loginForm" novalidate>
 
+        <app-control-input label="Nome">
+            <input type="text" class="form-control" placeholder="seu nome" formControlName="name" id="input">
+        </app-control-input>
+
         <app-control-input label="Email">
             <input type="text" class="form-control" placeholder="email" formControlName="email" id="input">
         </app-control-input>
+
         <div class="mb-1"></div>
         <app-control-input label="Senha">
             <input type="password" class="form-control" placeholder="senha" formControlName="password" id="input">
@@ -15,7 +20,7 @@
 
 
         <div class="mt-2 bt">
-            <button (click)="checkLogin()" [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Entrar</button>
+            <button (click)="doLogin()" [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Entrar</button>
         </div>
     </form>
 </div>

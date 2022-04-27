@@ -37,9 +37,8 @@ export class ListEmployeesComponent implements OnInit {
     })
   }
 
-
   isLoggedIn(){
-    return this.authService.loggedIn;
+    return window.sessionStorage.length;
   }
 
 }

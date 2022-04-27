@@ -145,7 +145,7 @@ export class EmployeesFormComponent implements OnInit {
   }
 
   cancelRegister() {
-    this.router.navigate(['/home'])
+    this.router.navigate(['/'])
   }
 
 
