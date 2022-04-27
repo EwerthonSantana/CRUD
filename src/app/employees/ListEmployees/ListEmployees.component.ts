@@ -1,14 +1,14 @@
-import { AuthService } from './../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { EmployeesService } from '../services/employees.service';
+import { EmployeesService } from '../../services/employees.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-ListEmployees',
+  templateUrl: './ListEmployees.component.html',
+  styleUrls: ['./ListEmployees.component.css']
 })
-export class HomeComponent implements OnInit {
+export class ListEmployeesComponent implements OnInit {
 
   employees: any[] = []
   id: any
@@ -37,9 +37,9 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  checkLoggedIn() {
-    return this.authService.loggedIn
-  }
 
+  isLoggedIn(){
+    return this.authService.loggedIn;
+  }
 
 }

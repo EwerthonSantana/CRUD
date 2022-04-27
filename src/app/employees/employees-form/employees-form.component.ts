@@ -1,20 +1,21 @@
-import { DatasService } from './../../services/datas.service';
+import { DatasService } from '../../services/datas.service';
 import { HttpClient } from '@angular/common/http';
-import { CpfValidator } from './Validators/cpf';
-import { EqualsTo } from './Validators/equalsTo';
+import { CpfValidator } from '../../Helper/Validators/cpf';
+import { EqualsTo } from '../../Helper/Validators/equalsTo';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { EmployeesService } from 'src/app/services/employees.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EmployeesModel } from './employees.model';
+import { EmployeesModel } from '../../Models/employees.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-employees-create',
-  templateUrl: './employees-create.component.html',
-  styleUrls: ['./employees-create.component.css']
+  selector: 'app-employees-form',
+  templateUrl: './employees-form.component.html',
+  styleUrls: ['./employees-form.component.css']
 })
-export class EmployeesCreateComponent implements OnInit {
+export class EmployeesFormComponent implements OnInit {
 
   send: boolean = false;
   employees: EmployeesModel;
@@ -23,8 +24,6 @@ export class EmployeesCreateComponent implements OnInit {
   states: any;
   offices: any;
   technologies: any;
-
-  @ViewChild('terms') terms: HTMLInputElement;
 
   constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient,
     private datasService: DatasService) { }
@@ -116,7 +115,7 @@ export class EmployeesCreateComponent implements OnInit {
       if (this.registerForm.value.id) {
         this.service.putEmployees(this.registerForm.value).subscribe(response => {
           alert('Empregado atualizado com sucesso!');
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
           this.send = true;
         })
       }
@@ -124,7 +123,7 @@ export class EmployeesCreateComponent implements OnInit {
       else {
         this.service.postEmployees(this.registerForm.value).subscribe(Response => {
           alert('Empregado registrado com sucesso');
-          this.router.navigate(['/home'])
+          this.router.navigate(['/'])
           this.send = true;
         });
 

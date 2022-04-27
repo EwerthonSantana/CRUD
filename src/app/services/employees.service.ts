@@ -1,9 +1,8 @@
-import { EmployeesModel } from './../employees/employees-create/employees.model';
+import { EmployeesModel } from '../Models/employees.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../API';
 import { Observable, take } from 'rxjs';
-import { statesBr } from '../employees/employees-create/statesBr.model';
 
 @Injectable({
   providedIn: 'root'

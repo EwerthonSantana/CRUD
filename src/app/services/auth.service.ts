@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { UserModel } from './../login/user.model';
+import { UserModel } from '../Models/user.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AuthService {
     if (user.email === 'ewerthon@gmail.com' &&
       user.password === '123') {
       this.loggedIn = true;
-      this.router.navigate(['/home'])
+      this.router.navigate(['/'])
     } else {
       alert('Email ou senha inválidos!')
     }
@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   userAuth() {
-    return this.loggedIn
+    return this.loggedIn;
   }
 
 }

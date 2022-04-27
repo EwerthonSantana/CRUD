@@ -1,15 +1,16 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
-import { EmployeesCreateComponent } from "../employees/employees-create/employees-create.component";
+import { EmployeesFormComponent } from "../employees/employees-form/employees-form.component";
+
 
 
 @Injectable()
 
-export class UserDeactivateGuard implements CanDeactivate<EmployeesCreateComponent>{
+export class UserDeactivateGuard implements CanDeactivate<EmployeesFormComponent>{
 
 
-    canDeactivate(component: EmployeesCreateComponent,
+    canDeactivate(component: EmployeesFormComponent,
         router: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | boolean {
         if (component.registerForm.valid && component.registerForm.dirty) {
