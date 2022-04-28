@@ -1,4 +1,4 @@
-import { FormControl, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 export class CpfValidator {
 

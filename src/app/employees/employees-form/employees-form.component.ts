@@ -24,6 +24,7 @@ export class EmployeesFormComponent implements OnInit {
   states: any;
   offices: any;
   technologies: any;
+  @Input() controlCepNotPopuled: boolean = true;
 
   constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient,
     private datasService: DatasService) { }
@@ -152,7 +153,13 @@ export class EmployeesFormComponent implements OnInit {
   //Faz a consulta da API ViaCep com tratamento do cep
   consultCEP() {
 
-    let cep = this.registerForm.get('adress.cep').value
+    if (!this.registerForm.get('adress.cep').valid) {
+      return console.log('Ainda Inválido');
+    }
+
+     console.log('Ainda Inválido');
+
+    let cep = this.registerForm.get('adress.cep').value;
 
     //Nova variável "cep" somente com dígitos.
     cep = cep.replace(/\D/g, '');
@@ -162,19 +169,23 @@ export class EmployeesFormComponent implements OnInit {
 
       //Expressão regular para validar o CEP.
       var validateCEP = /^[0-9]{8}$/;
-
-      //Valida o formato do CEP.
       if (validateCEP.test(cep)) {
-        this.http.get(`//viacep.com.br/ws/${cep}/json/`)
-          .pipe(map((datas: any) => datas))
-          .subscribe(datas => this.populedDataCep(datas));
-
+        this.datasService.getCep(cep)
+          .subscribe(datas => {
+            this.populedDataCep(datas)
+            return console.log('Agira tá valido!');
+          });
       }
     }
   }
 
-  //Popula os campos de Endereço atráves do CEP
   populedDataCep(datas: any) {
+    if (datas.bairro === undefined || null) {
+      this.controlCepNotPopuled = false;
+    }
+    if (datas.cidade === undefined || null) {
+      this.controlCepNotPopuled = false;
+    }
 
     this.registerForm.patchValue({
       adress: {
@@ -188,7 +199,7 @@ export class EmployeesFormComponent implements OnInit {
 
   }
 
-  acceptTerms(){
+  acceptTerms() {
     this.registerForm.get('terms').setValue(true);
     let closeModal = document.getElementById('outModal');
     closeModal.click();
@@ -202,8 +213,8 @@ export class EmployeesFormComponent implements OnInit {
 
   setCssValidator(control: any) {
     return {
-      'is-valid': this.verifyValid(control) && this.registerForm.get(control).touched,
       'is-invalid': !this.verifyValid(control) && this.registerForm.get(control).touched
+
     }
   }
 

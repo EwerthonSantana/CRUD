@@ -7,3 +7,7 @@ p {
     padding: 8px 16px;
     margin-bottom: 0px !important;
 }
+
+.header {
+    background-color: #493e8a;
+}

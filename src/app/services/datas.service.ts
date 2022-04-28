@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { take } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 
 
 @Injectable({
@@ -13,8 +13,7 @@ export class DatasService {
 
     }
 
-
-    getOffices(){
+    getOffices() {
         return this.http.get('assets/datas/offices.json').pipe(take(1));
     }
 
@@ -22,10 +21,13 @@ export class DatasService {
         return this.http.get('assets/datas/statesBR.json').pipe(take(1));
     }
 
-    getTechnologies(){
+    getTechnologies() {
         return this.http.get('assets/datas/technologies.json').pipe(take(1));
     }
 
+    getCep(cep: any): Observable<any> {
+        return this.http.get(`//viacep.com.br/ws/${cep}/json/`).pipe(take(1));
+    }
 
 }
 

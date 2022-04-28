@@ -1,17 +1,23 @@
-<ul class="d-flex nav bg-secondary">
-    <li class="nav-item brand">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/']">Início</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/registerEmployess']">Registrar Funcionário</a>
-    </li>
-    <li class="nav-item">
-        <a role="button" *ngIf="LoggedIn()" class="nav-link" (click)="doLogoff()">Sair</a>
-    </li>
+<ul class="nav navbar-expand-lg navbar-light bg-secondary">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <li class="nav-item brand">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/']">Início</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/registerEmployess']">Registrar
+                    Funcionário</a>
+            </li>
+            <li class="nav-item">
+                <a role="button" *ngIf="LoggedIn()" class="nav-link" (click)="doLogoff()">Sair</a>
+            </li>
 
-
-    <div class="text-white justify-content-end">
-        <p>Bem vindo {{name | uppercase}}!</p>
+            <div class="text-white nav-item">
+                <p>Bem vindo {{name | uppercase}}!</p>
+            </div>
+        </div>
     </div>
-
 </ul>

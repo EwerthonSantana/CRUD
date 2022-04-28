@@ -1,11 +1,12 @@
-<div class="container-fluid my-3">
+<div class="container my-3">
     <div class="row">
         <div class="col-md-12 d-flex bg-light justify-content-between align-items-center table-header">
             <div class="table-name d-flex lign-items-center">
                 <p class=" lead primary-name ">Manage</p>
                 <p class="lead secundary-name "><strong>Employees</strong> </p>
             </div>
-            <a *ngIf="isLoggedIn()" role="button " class="btn btn-success" [routerLink]="['/registerEmployess']"><i class="fa fa-plus-circle" aria-hidden="true"></i>add novo funcionário</a>
+            <a *ngIf="isLoggedIn()" role="button " class="btn btn-success" [routerLink]="['/registerEmployess']"><i
+                    class="fa fa-plus-circle" aria-hidden="true"></i>add novo funcionário</a>
         </div>
     </div>
     <div *ngIf="employees.length <= 0" class="text-center">
@@ -27,7 +28,8 @@
                 <tr *ngFor="let row of employees">
                     <td>{{row.name}}</td>
                     <td>{{row.email}}</td>
-                    <td> {{row.adress.district + ", "+row.adress.street + ", " + row.adress.houseNumber}} {{row.adress.complement}}</td>
+                    <td> {{row.adress.district + ", "+row.adress.street + ", " + row.adress.houseNumber}} {{row.adress.complement}}
+                    </td>
                     <td>{{row.fone}}</td>
                     <td>
                         <a *ngIf="isLoggedIn()" role="button" (click)="updateEmploye(row.id)"> <i class="fa fa-pencil mx-2"></i> </a>
