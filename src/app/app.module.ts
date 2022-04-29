@@ -40,7 +40,7 @@ import { AuthenticationComponent } from './Authentication/authentication/authent
     FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot({
-      dropSpecialCharacters: false // ao salvar vai manter a máscara no db.json
+     
     })
   ],
   providers: [EmployeesService, AuthGuard, UserDeactivateGuard],

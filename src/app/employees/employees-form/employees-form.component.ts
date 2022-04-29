@@ -4,7 +4,7 @@ import { CpfValidator } from '../../Helper/Validators/cpf';
 import { EqualsTo } from '../../Helper/Validators/equalsTo';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { EmployeesService } from 'src/app/services/employees.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { EmployeesModel } from '../../Models/employees.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -25,6 +25,7 @@ export class EmployeesFormComponent implements OnInit {
   offices: any;
   technologies: any;
   @Input() controlCepNotPopuled: boolean = true;
+  invalidCep: boolean;
 
   constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient,
     private datasService: DatasService) { }
@@ -33,12 +34,14 @@ export class EmployeesFormComponent implements OnInit {
 
     this.route.params.subscribe(
       (params: any) => {
-        const id = params['id']
-        console.log(id)
-        const formUpdate = this.service.getEmployeesById(id)
-        formUpdate.subscribe(datas => {
-          this.populedForm(datas)
-        })
+        const id = params['id'];
+        if (id) {
+          const formUpdate = this.service.getEmployeesById(id);
+          formUpdate.subscribe(datas => {
+            this.populedForm(datas);
+          })
+        }
+
       }
     )
 
@@ -54,7 +57,7 @@ export class EmployeesFormComponent implements OnInit {
       cpf: new FormControl("", [Validators.required, CpfValidator.cpfValid]),
       fone: new FormControl("", [Validators.required]),
       email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
-      emailConfirmation: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern), EqualsTo.equalsTo('email')]),
+      emailConfirmation: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern), EqualsTo.checkEmails]),
       adress: new FormGroup({
         cep: new FormControl("", [Validators.required]),
         houseNumber: new FormControl("", [Validators.required]),
@@ -75,7 +78,7 @@ export class EmployeesFormComponent implements OnInit {
       newsletter: new FormControl("", [Validators.required]),
       terms: new FormControl("", [Validators.required])
 
-    })
+    });
 
   }
 
@@ -155,36 +158,40 @@ export class EmployeesFormComponent implements OnInit {
 
     if (!this.registerForm.get('adress.cep').valid) {
       return console.log('Ainda Inválido');
+    } else {
+
+      let cep = this.registerForm.get('adress.cep').value;
+
+      this.datasService.getCep(cep)
+        .subscribe(datas => {
+          if (!("erro" in datas)) {
+            this.populedDataCep(datas);
+            console.log(datas);
+          } else {
+            console.log("não existe este cep na API");
+            this.registerForm.get('adress.cep').setErrors({ 'invalidCep': true });
+            this.clearFormCep();
+          }
+
+        });
     }
 
-     console.log('Ainda Inválido');
+  }
 
-    let cep = this.registerForm.get('adress.cep').value;
-
-    //Nova variável "cep" somente com dígitos.
-    cep = cep.replace(/\D/g, '');
-
-    //Verifica se campo cep possui valor informado.
-    if (cep != "") {
-
-      //Expressão regular para validar o CEP.
-      var validateCEP = /^[0-9]{8}$/;
-      if (validateCEP.test(cep)) {
-        this.datasService.getCep(cep)
-          .subscribe(datas => {
-            this.populedDataCep(datas)
-            return console.log('Agira tá valido!');
-          });
-      }
-    }
+  clearFormCep() {
+    this.registerForm.get('adress.complement').reset()
+    this.registerForm.get('adress.street').reset()
+    this.registerForm.get('adress.district').reset()
+    this.registerForm.get('adress.city').reset()
+    this.registerForm.get('adress.state').reset()
   }
 
   populedDataCep(datas: any) {
-    if (datas.bairro === undefined || null) {
+
+    if (datas.bairro === "") {
       this.controlCepNotPopuled = false;
-    }
-    if (datas.cidade === undefined || null) {
-      this.controlCepNotPopuled = false;
+    } else {
+      this.controlCepNotPopuled = true;
     }
 
     this.registerForm.patchValue({
@@ -196,7 +203,6 @@ export class EmployeesFormComponent implements OnInit {
         state: datas.uf
       }
     })
-
   }
 
   acceptTerms() {
@@ -207,14 +213,11 @@ export class EmployeesFormComponent implements OnInit {
 
   verifyValid(control: any): boolean {
     return this.registerForm.get(control).valid;
-
   }
-
 
   setCssValidator(control: any) {
     return {
       'is-invalid': !this.verifyValid(control) && this.registerForm.get(control).touched
-
     }
   }
 
