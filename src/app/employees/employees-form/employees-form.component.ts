@@ -1,7 +1,7 @@
 import { DatasService } from '../../services/datas.service';
 import { HttpClient } from '@angular/common/http';
-import { CpfValidator } from '../../Helper/Validators/cpf';
-import { EqualsTo } from '../../Helper/Validators/equalsTo';
+import { CpfValidator } from '../../helper/validators/cpf';
+import { EqualsTo } from '../../helper/validators/equalsTo';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { EmployeesService } from 'src/app/services/employees.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';

@@ -74,7 +74,8 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <app-control-input label="Cidade *" [control]="registerForm.get('adress.city')">
-                        <input type="text" formControlName="city" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.city')" [attr.disabled]="controlCepNotPopuled" />
+                        <input type="text" formControlName="city" class="form-cont
+                        rol" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.city')" [attr.disabled]="controlCepNotPopuled" />
                     </app-control-input>
                 </div>
                 <div class="col-md-3 mb-3">
@@ -136,7 +137,7 @@
                 <app-control-input label="Newsletter" [control]="registerForm.get('newsletter')">
                     <div class="form-check form-check-inline" *ngFor="let item of newsletter">
                         <input checked class="form-check-input" type="radio" [value]="item.value" name="newsletter" formControlName="newsletter" [ngClass]="setCssValidator('newsletter')" />
-                        <label class="form-check-label">{{item.description}}</label>
+                        <label class="form-check-label">{{ item.description }}</label>
                     </div>
                 </app-control-input>
             </div>
