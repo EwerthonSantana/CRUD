@@ -1,4 +1,4 @@
-import { FormGroup, AbstractControl, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
 // Validador customizado para comparar dois campos
 export class EqualsTo {
@@ -8,7 +8,7 @@ export class EqualsTo {
       return null;
     } else {
       control.get('emailConfirmation')?.setErrors({ equalsTo: true });
-      return { equalsTo: true };
+      
     }
   }
   

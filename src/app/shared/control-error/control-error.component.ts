@@ -1,5 +1,6 @@
 import { Component, ContentChild, Input, OnInit } from '@angular/core';
-import { FormControlName } from '@angular/forms';
+import { AbstractControl, FormControlName } from '@angular/forms';
+import { ControlErrorService } from 'src/app/services/control-error.service';
 
 @Component({
   selector: 'app-control-error',
@@ -8,15 +9,21 @@ import { FormControlName } from '@angular/forms';
 })
 export class ControlErrorComponent implements OnInit {
 
-  @Input() hasError: boolean;
-  @Input() errorMessage: string;
-  
+  @Input() control!: AbstractControl;
+  @Input() label!: string;
 
-  constructor() { }
+  constructor(private error: ControlErrorService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {}
 
-   
+  get errorMessage() {
+    for (const propertyName in this.control?.errors) {
+      if (this.control?.errors.hasOwnProperty(propertyName)) {
+        return this.error.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]);
+      }
+    }
+
+    return null;
   }
 
 

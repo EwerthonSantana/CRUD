@@ -4,9 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeesService } from '../../services/employees.service';
 
 @Component({
-  selector: 'app-ListEmployees',
-  templateUrl: './ListEmployees.component.html',
-  styleUrls: ['./ListEmployees.component.css']
+  selector: 'app-list-employees',
+  templateUrl: './list-employees.component.html',
+  styleUrls: ['./list-employees.component.css']
 })
 export class ListEmployeesComponent implements OnInit {
 

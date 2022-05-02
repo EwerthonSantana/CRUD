@@ -1,20 +1,21 @@
+<!-- {{registerForm.value | json}} -->
 <form [formGroup]="registerForm" novalidate class="needs-validation" autocomplete="on">
     <div class="container my-3">
         <div class="row">
             <div class="col-md-4 mb-3">
-                <app-control-input label="Nome *">
+                <app-control-input label="Nome *" [control]="registerForm.get('name')">
                     <input type="text" formControlName="name" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('name')" />
                 </app-control-input>
             </div>
 
             <div class="col-md-4 mb-3">
-                <app-control-input label="CPF *">
+                <app-control-input label="CPF *" [control]="registerForm.get('cpf')">
                     <input type="text" formControlName="cpf" class="form-control" id="input" placeholder="floating" mask="000.000.000-00" [ngClass]="setCssValidator('cpf')" />
                 </app-control-input>
             </div>
 
             <div class="col-md-4 mb-3">
-                <app-control-input label="Telefone *">
+                <app-control-input label="Telefone *" [control]="registerForm.get('fone')">
                     <input type="text" formControlName="fone" class="form-control" id="input" placeholder="floating" mask="(00)00000-0000" [ngClass]="setCssValidator('fone')" />
                 </app-control-input>
             </div>
@@ -22,14 +23,14 @@
 
         <div class="row">
             <div class="col-12 mb-3">
-                <app-control-input label="Email *">
+                <app-control-input label="Email *" [control]="registerForm.get('email')">
                     <input type="text" formControlName="email" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('email')" />
                 </app-control-input>
             </div>
         </div>
         <div class="row">
             <div class="col-12 mb-3">
-                <app-control-input label="Confirmação Email *">
+                <app-control-input label="Confirmação Email *" [control]="registerForm.get('emailConfirmation')">
                     <input type="text" formControlName="emailConfirmation" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('emailConfirmation')" />
                 </app-control-input>
                 <div *ngIf="registerForm.get('emailConfirmation').hasError('equalsTo')" class="teste">
@@ -41,13 +42,13 @@
         <div formGroupName="adress">
             <div class="row">
                 <div class="col-md-3 mb-3">
-                    <app-control-input label="CEP *">
+                    <app-control-input label="CEP *" [control]="registerForm.get('adress.cep')">
                         <input (blur)="consultCEP()" placeholder="floating" type="text" formControlName="cep" class="form-control" mask="00000-000" [ngClass]="setCssValidator('adress.cep')" />
                     </app-control-input>
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <app-control-input label="Número *">
+                    <app-control-input label="Número *" [control]="registerForm.get('adress.houseNumber')">
                         <input type="text" formControlName="houseNumber" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.houseNumber')" />
                     </app-control-input>
                 </div>
@@ -60,25 +61,25 @@
             </div>
             <div class="row">
                 <div class="col-12 mb-3">
-                    <app-control-input label="Rua *">
+                    <app-control-input label="Rua *" [control]="registerForm.get('adress.street')">
                         <input type="text" formControlName="street" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.street')" />
                     </app-control-input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-5 mb-3">
-                    <app-control-input label="Bairro *">
-                        <input type="text" formControlName="district" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.district')" [readonly]="controlCepNotPopuled" />
+                    <app-control-input label="Bairro *" [control]="registerForm.get('adress.district')">
+                        <input type="text" formControlName="district" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.district')" [attr.disabled]="controlCepNotPopuled" />
                     </app-control-input>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <app-control-input label="Cidade *">
-                        <input type="text" formControlName="city" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.city')" [readonly]="controlCepNotPopuled" />
+                    <app-control-input label="Cidade *" [control]="registerForm.get('adress.city')">
+                        <input type="text" formControlName="city" class="form-control" id="input" placeholder="floating" [ngClass]="setCssValidator('adress.city')" [attr.disabled]="controlCepNotPopuled" />
                     </app-control-input>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <app-control-input label="Estado *">
-                        <select formControlName="state" class="form-select autocompletAdress" id="input" aria-label="Floating" [ngClass]="setCssValidator('adress.state')">
+                    <app-control-input label="Estado *" [control]="registerForm.get('adress.state')">
+                        <select formControlName="state" class="form-select" id="input" aria-label="Floating" [ngClass]="setCssValidator('adress.state')" [attr.disabled]="controlCepNotPopuled">
               <option *ngFor="let state of states" [value]="state.initials">
                 {{ state.name }}
               </option>
@@ -90,7 +91,7 @@
 
         <div class="row">
             <div class="col-md-3 mb-3">
-                <app-control-input label="Cargo *">
+                <app-control-input label="Cargo *" [control]="registerForm.get('office')">
                     <select formControlName="office" class="form-select" id="input" aria-label="Floating" [ngClass]="setCssValidator('office')">
             <option *ngFor="let office of offices" [value]="office.name">
               {{ office.name }}
@@ -99,11 +100,13 @@
                 </app-control-input>
             </div>
             <div class="col-md-3 mb-3">
-                <select formControlName="technology" class="form-select" [ngClass]="setCssValidator('technology')" multiple>
-          <option *ngFor="let technology of technologies" [value]="technology.name">
-            {{ technology.name }}
-          </option>
-        </select>
+                <app-control-input label="Tecnologias" [control]="registerForm.get('technology')">
+                    <select formControlName="technology" class="form-select" [ngClass]="setCssValidator('technology')" multiple>
+            <option *ngFor="let technology of technologies" [value]="technology.name">
+              {{ technology.name }}
+            </option>
+          </select>
+                </app-control-input>
             </div>
 
             <div formGroupName="frameworks" class="col-md-4 mb-3">
@@ -130,16 +133,12 @@
 
         <div class="row">
             <div class="col-md-4 mb-3">
-                <label class="mb-1">Deseja participar da nossa Newsletter? </label>
-                <br />
-                <div class="form-check form-check-inline">
-                    <input checked class="form-check-input" type="radio" name="newsletter" value="yes" formControlName="newsletter" [ngClass]="setCssValidator('newsletter')" />
-                    <label class="form-check-label">Sim</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="newsletter" value="no" formControlName="newsletter" [ngClass]="setCssValidator('newsletter')" />
-                    <label class="form-check-label">Não</label>
-                </div>
+                <app-control-input label="Newsletter" [control]="registerForm.get('newsletter')">
+                    <div class="form-check form-check-inline" *ngFor="let item of newsletter">
+                        <input checked class="form-check-input" type="radio" [value]="item.value" name="newsletter" formControlName="newsletter" [ngClass]="setCssValidator('newsletter')" />
+                        <label class="form-check-label">{{item.description}}</label>
+                    </div>
+                </app-control-input>
             </div>
         </div>
         <div class="row">

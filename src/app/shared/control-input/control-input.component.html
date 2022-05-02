@@ -1,7 +1,5 @@
 <div class="form-floating mb-3">
     <ng-content></ng-content>
     <label for="input" class="form-label">{{label}}</label>
-    <div class="invalid-feedback">
-        Campo Inválido!
-    </div>
+    <app-control-error class="invalid-feedback" [label]="label.replace('*','')" [control]="control"></app-control-error>
 </div>

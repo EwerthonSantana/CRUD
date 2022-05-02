@@ -4,11 +4,9 @@ import { CpfValidator } from '../../Helper/Validators/cpf';
 import { EqualsTo } from '../../Helper/Validators/equalsTo';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { EmployeesService } from 'src/app/services/employees.service';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { EmployeesModel } from '../../Models/employees.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmployeesModel } from '../../model/employees.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-employees-form',
@@ -24,6 +22,7 @@ export class EmployeesFormComponent implements OnInit {
   states: any;
   offices: any;
   technologies: any;
+  newsletter: any;
   @Input() controlCepNotPopuled: boolean = true;
   invalidCep: boolean;
 
@@ -41,7 +40,6 @@ export class EmployeesFormComponent implements OnInit {
             this.populedForm(datas);
           })
         }
-
       }
     )
 
@@ -51,13 +49,15 @@ export class EmployeesFormComponent implements OnInit {
 
     this.datasService.getStatesBr().subscribe(datas => { this.states = datas });
 
+    this.newsletter = this.datasService.getNewsLetter();
+
     this.registerForm = new FormGroup({
       id: new FormControl(),
       name: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(80)]),
       cpf: new FormControl("", [Validators.required, CpfValidator.cpfValid]),
       fone: new FormControl("", [Validators.required]),
       email: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
-      emailConfirmation: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern), EqualsTo.checkEmails]),
+      emailConfirmation: new FormControl("", [Validators.required, Validators.pattern(this.emailPattern)]),
       adress: new FormGroup({
         cep: new FormControl("", [Validators.required]),
         houseNumber: new FormControl("", [Validators.required]),
@@ -78,7 +78,7 @@ export class EmployeesFormComponent implements OnInit {
       newsletter: new FormControl("", [Validators.required]),
       terms: new FormControl("", [Validators.required])
 
-    });
+    }, { validators: EqualsTo.checkEmails });
 
   }
 
@@ -189,7 +189,7 @@ export class EmployeesFormComponent implements OnInit {
   populedDataCep(datas: any) {
 
     if (datas.bairro === "") {
-      this.controlCepNotPopuled = false;
+      this.controlCepNotPopuled = null;
     } else {
       this.controlCepNotPopuled = true;
     }

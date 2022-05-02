@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { UserModel } from '../Models/user.model';
+import { UserModel } from '../model/user.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({

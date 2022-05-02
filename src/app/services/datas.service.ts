@@ -29,5 +29,12 @@ export class DatasService {
         return this.http.get(`//viacep.com.br/ws/${cep}/json/`).pipe(take(1));
     }
 
+    getNewsLetter() {
+        return [
+            { value: 'sim', description: 'sim' },
+            { value: 'não', description: 'não' }
+        ]
+    }
+
 }
 

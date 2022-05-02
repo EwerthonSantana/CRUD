@@ -1,4 +1,4 @@
-import { EmployeesModel } from '../Models/employees.model';
+import { EmployeesModel } from '../model/employees.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../API';

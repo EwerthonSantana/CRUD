@@ -31,6 +31,44 @@
       },
       "newsletter": "no",
       "terms": true
+    },
+    {
+      "id": 3,
+      "name": "Ewerthon",
+      "cpf": "11521610401",
+      "fone": "81985281526",
+      "email": "ewerthon@gmail.com",
+      "emailConfirmation": "ewerthon@gmail.com",
+      "adress": {
+        "cep": "54325295",
+        "houseNumber": "208",
+        "complement": "d",
+        "street": "4ª Rua Nova Descoberta",
+        "district": "Guararapes",
+        "city": "Jaboatão dos Guararapes",
+        "state": "PE"
+      },
+      "office": "Scrum Master",
+      "technology": [
+        "JAVA",
+        "PHP",
+        "C",
+        "C++",
+        "JavaScript",
+        "TypeScript",
+        "C#",
+        "GO",
+        "Assembly",
+        "Python"
+      ],
+      "frameworks": {
+        "angular": true,
+        "react": null,
+        "vue": true,
+        "laravel": null
+      },
+      "newsletter": "sim",
+      "terms": true
     }
   ]
 }

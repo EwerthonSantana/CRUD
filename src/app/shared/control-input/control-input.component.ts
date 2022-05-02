@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ControlInputComponent implements OnInit {
 
   @Input() label: string;
+  @Input() control: any;
 
   constructor() { }
 
