@@ -12,7 +12,8 @@ export class ControlErrorService {
       maxlength: `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres.`,
       custom: `Informe um ${fieldName} válido.`,
       equalsTo: `${fieldName} não são iguais.`,
-      pattern: `${fieldName} está inválido.`
+      pattern: `${fieldName} está inválido.`,
+      invalidCep: `${fieldName} está inválido.`,
     };
 
     return config[validatorName];

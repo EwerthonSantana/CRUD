@@ -25,6 +25,7 @@ export class EmployeesFormComponent implements OnInit {
   newsletter: any;
   @Input() controlCepNotPopuled: boolean = true;
   invalidCep: boolean;
+  frameworks;
 
   constructor(private service: EmployeesService, private router: Router, private route: ActivatedRoute, private http: HttpClient,
     private datasService: DatasService) { }
@@ -50,6 +51,8 @@ export class EmployeesFormComponent implements OnInit {
     this.datasService.getStatesBr().subscribe(datas => { this.states = datas });
 
     this.newsletter = this.datasService.getNewsLetter();
+
+    this.datasService.getFrameworks().subscribe(datas => this.frameworks = datas);
 
     this.registerForm = new FormGroup({
       id: new FormControl(),
@@ -157,7 +160,8 @@ export class EmployeesFormComponent implements OnInit {
   consultCEP() {
 
     if (!this.registerForm.get('adress.cep').valid) {
-      return console.log('Ainda Inválido');
+      return  this.clearFormCep(); 
+    
     } else {
 
       let cep = this.registerForm.get('adress.cep').value;
@@ -184,6 +188,9 @@ export class EmployeesFormComponent implements OnInit {
     this.registerForm.get('adress.district').reset()
     this.registerForm.get('adress.city').reset()
     this.registerForm.get('adress.state').reset()
+    this.registerForm.get('adress.houseNumber').reset()
+    this.controlCepNotPopuled = true;
+    
   }
 
   populedDataCep(datas: any) {

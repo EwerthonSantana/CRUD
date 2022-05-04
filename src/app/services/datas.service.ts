@@ -29,6 +29,10 @@ export class DatasService {
         return this.http.get(`//viacep.com.br/ws/${cep}/json/`).pipe(take(1));
     }
 
+    getFrameworks() {
+        return this.http.get('assets/datas/frameworks.json').pipe(take(1));
+    }
+
     getNewsLetter() {
         return [
             { value: 'sim', description: 'sim' },
